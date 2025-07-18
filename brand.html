@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jaehee Shin</title>
+	<meta name="description" content="설명">
+	<meta name="keywords" content="키워드1, 키워드2">
+	<meta property="og:image" content="">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="brand.css">
+	<link rel="icon" type="image/png" href="">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+<div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+  <div class="plus-icon">
+  <div class="bar horizontal"></div>
+  <div class="bar vertical"></div>
+</div>
+</div>
+
+<div id="modal-menu" class="modal">
+  <!-- <span class="close-modal" onclick="closeMenu()">×</span> -->
+  <div class="modal-content">
+    <a href="project.html">Project</a>
+    <a href="brand.html">Brand</a>
+    <a href="note.html">Note</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+
+
+ 
+  <select id="project-select">
+    <option value="miguproduct">Migu product</option>
+    <option value="sunab">Sunab</option>
+  </select>
+
+
+  <div class="image-description">
+  <p id="desc-line1"></p>
+  <p id="desc-line2"></p>
+  <p id="desc-line3"></p>
+  <p id="desc-line4"></p>
+  <p id="desc-line5"></p>
+  <p id="desc-line6"></p>
+
+
+</div>
+
+
+  <p class= "update"> Last update: 2025.07.16 </p>
+
+  <div class="slider-wrapper">
+  <div id="image-container"></div>
+</div>
+
+  
+<div id="loader" class="loader"></div>
+
+
+
+
+<script>
+
+
+  const images = {
+    miguproduct: [
+      "images/7D6B9312.jpg",
+      "images/7D6B9302.jpg",
+      "images/7D6B9305.jpg",
+      "images/7D6B9277.jpg",
+      "images/7D6B9290.jpg",
+      "images/7D6B9258.jpg",
+      "images/7D6B9347.jpg",
+    ],
+
+    sunab: [
+      "images/IMG_5048.JPG",
+      "images/image_1663255823473_2500.jpg",
+      "images/image_1663255824495_2500.jpg",
+      "images/image_1663255750106_2500.jpg",
+      "images/image_1663255750230_2500.jpg",
+      "images/image_1636457026480_2500.jpg",
+      "images/image_1636457026147_2500.jpg",
+      "images/image_1624429872367_2500.jpg",
+      "images/image_1624270928179_2500.jpg",
+      "images/image_1624376425078_2500.jpg",
+      "images/image_1624286926853_2500.jpg",
+      "images/DSC08225.jpg",
+    ]
+  };
+
+  const projectDescriptions = {
+  miguproduct: {
+    line1: "Type: Belt",
+    line2: "Material: Cow leather, Nickel & Brass buckle",
+    line3: "Year: 2025"
+  },
+  sunab: {
+    line1: "Type: Bag, Wallet, Acc",
+    line2: "Year: 2019"
+  }
+};
+
+  let currentIndex = 0;
+  let currentProject = "";
+  let isFirstLoad = true; // 🔑 최초 로딩 여부 체크용
+
+  let overlayApplied = false; // ✅ 블러 적용 여부 플래그
+
+
+
+
+
+function applyOverlayIfLastImage() {
+  const isLast = currentIndex === images[currentProject].length - 1;
+  const overlayWrapper = document.querySelector(".image-overlay");
+
+  if (isLast && overlayWrapper && !overlayWrapper.classList.contains("show-filter")) {
+    overlayWrapper.classList.add("show-filter");
+
+    // 기존 크레딧 제거
+    const existingCredit = overlayWrapper.querySelector(".overlay-credit");
+    if (existingCredit) existingCredit.remove();
+
+    // 크레딧 생성
+    const credit = document.createElement("div");
+    credit.className = "overlay-credit";
+
+    const creditData = projectCredits[currentProject]; // 📌 동적으로 크레딧 가져오기
+    credit.innerHTML = `
+      <p>${creditData.line1}</p>
+      <p>${creditData.line2}</p>
+      <p>${creditData.line3}</p>
+    `;
+
+    overlayWrapper.appendChild(credit);
+  }
+}
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll(".modal-content a");
+  const currentPath = window.location.pathname;
+
+  links.forEach(link => {
+    if (link.getAttribute("href") === currentPath.split("/").pop()) {
+      link.classList.add("active-menu");
+    }
+  });
+});
+
+
+const projectCredits = {
+  miguproduct: {
+    line1: "Migu product Yeonhui Offline store",
+    line2: '1F migu product, 21 Yeonhui-ro 11ma-gil, Seodaemun-gu, Seoul',
+  },
+  sunab: {
+    line1: "Sunab official website",
+    line2: '<a href="https://www.sunab.kr" target="_blank">www.sunab.kr</a>',
+  }
+};
+
+function applyOverlayIfLastImage() {
+  const isLast = currentIndex === images[currentProject].length - 1;
+  const overlayWrapper = document.querySelector(".image-overlay");
+
+  if (isLast && overlayWrapper && !overlayWrapper.classList.contains("show-filter")) {
+    overlayWrapper.classList.add("show-filter");
+
+    const existingCredit = overlayWrapper.querySelector(".overlay-credit");
+    if (existingCredit) existingCredit.remove();
+
+    const credit = document.createElement("div");
+    credit.className = "overlay-credit";
+
+    const creditData = projectCredits[currentProject];
+    credit.innerHTML = `
+      <p>${creditData.line1}</p>
+      <p><a href="https://${creditData.line2}" target="_blank">${creditData.line2}</a></p>
+    `;
+
+    overlayWrapper.appendChild(credit);
+  }
+}
+
+
+//   const container = document.getElementById("image-container");
+//   const prevBtn = document.getElementById("prevBtn");
+//   const nextBtn = document.getElementById("nextBtn");
+
+//   function showImage(index) {
+//   const loader = document.getElementById("loader");
+//   loader.style.display = "block"; // 🔵 로딩 시작
+
+//   container.innerHTML = "";
+
+//   const img = document.createElement("img");
+//   img.src = images[currentProject][index];
+
+//   img.onload = () => {
+//     loader.style.display = "none"; // ✅ 이미지 완전히 로드되면 숨김
+//     container.appendChild(img);
+
+//     // 최초 로딩 시에만 페이드인 효과
+//     if (isFirstLoad) {
+//       img.classList.add("pre-fade");
+//       requestAnimationFrame(() => {
+//         img.classList.add("fade-in");
+//         img.classList.remove("pre-fade");
+//       });
+//       isFirstLoad = false;
+//     }
+//   };
+// }
+
+
+
+  
+
+  document.getElementById("project-select").addEventListener("change", function () {
+  currentProject = this.value;
+  currentIndex = 0;
+  isFirstLoad = true;
+
+  showImagesVertically(); // 슬라이드 대신 세로 나열
+
+  const desc = projectDescriptions[currentProject];
+  document.getElementById("desc-line1").textContent = desc.line1;
+  document.getElementById("desc-line2").textContent = desc.line2;
+  document.getElementById("desc-line3").textContent = desc.line3;
+  document.getElementById("desc-line4").textContent = desc.line4 || "";
+  document.getElementById("desc-line5").textContent = desc.line5 || "";
+  document.getElementById("desc-line6").textContent = desc.line6 || "";
+});
+
+
+
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  const projectSelect = document.getElementById("project-select");
+  projectSelect.value = "miguproduct";
+  currentProject = "miguproduct";
+
+  showImagesVertically();  // 슬라이드 대신 세로 나열
+
+  const desc = projectDescriptions[currentProject];
+  document.getElementById("desc-line1").textContent = desc.line1;
+  document.getElementById("desc-line2").textContent = desc.line2;
+  document.getElementById("desc-line3").textContent = desc.line3;
+});
+
+
+
+
+
+//  prevBtn.addEventListener("click", () => {
+//     if (currentIndex > 0) {
+//       currentIndex--;
+//       showImage(currentIndex);
+//     }
+//   });
+
+//   nextBtn.addEventListener("click", () => {
+//   if (currentIndex < images[currentProject].length - 1) {
+//     currentIndex++;
+//     showImage(currentIndex);
+//   } else {
+//     if (!overlayApplied) {
+//       applyOverlayIfLastImage(); // 필터 덮기
+//       overlayApplied = true;
+//     } else {
+//       currentIndex = 0;
+//       overlayApplied = false;
+//       showImage(currentIndex);
+//     }
+//   }
+// });
+
+
+
+  function toggleMenu() {
+  const modal = document.getElementById("modal-menu");
+  const toggle = document.getElementById("menuToggle");
+
+  const isOpen = modal.classList.contains("show");
+
+  
+
+  if (isOpen) {
+    modal.classList.remove("show");
+    toggle.classList.remove("rotate");
+
+    // 강제로 트랜지션 제거
+    modal.style.transition = "none";
+
+    // opacity가 0이 되더라도 트랜지션 없이 바로 적용되게
+    requestAnimationFrame(() => {
+      modal.style.opacity = "0";
+      modal.style.pointerEvents = "none";
+    });
+
+  } else {
+
+     // 모달 열기: 트랜지션 추가 후 show 클래스 추가
+    modal.style.transition = "opacity 0.7s ease";
+    modal.style.opacity = "";
+    modal.style.pointerEvents = "";
+
+    modal.classList.add("show");
+    toggle.classList.add("rotate");
+  }
+}
+
+
+container.addEventListener("click", () => {
+  if (currentProject && images[currentProject]) {
+    if (currentIndex < images[currentProject].length - 1) {
+      currentIndex++;
+      showImage(currentIndex);
+    } else {
+      if (!overlayApplied) {
+        applyOverlayIfLastImage(); // 필터 덮기
+        overlayApplied = true;
+      } else {
+        currentIndex = 0;
+        overlayApplied = false;
+        showImage(currentIndex);
+      }
+    }
+  }
+});
+
+
+
+function showImagesVertically() {
+  const container = document.getElementById("image-container");
+  container.innerHTML = "";
+  container.classList.add("vertical-images");
+
+  const imgList = images[currentProject];
+  const creditData = projectCredits[currentProject];
+
+  imgList.forEach((src, index) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "image-wrapper";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.loading = "lazy";
+
+    wrapper.appendChild(img);
+    container.appendChild(wrapper);
+
+    // 마지막 이미지인 경우 크레딧도 같이 붙이기
+    if (index === imgList.length - 1) {
+  const credit = document.createElement("p");
+  credit.className = "image-credit";
+
+  let creditHTML = `${creditData.line1}<br>${creditData.line2}`;
+  if (creditData.line3) {
+    creditHTML += `<br>${creditData.line3}`;
+  }
+
+  credit.innerHTML = creditHTML;
+  wrapper.appendChild(credit);
+}
+  });
+}
+
+
+</script>
+</body>
+</html>

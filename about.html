@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jaehee Shin</title>
+	<meta name="description" content="설명">
+	<meta name="keywords" content="키워드1, 키워드2">
+	<meta property="og:image" content="">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="about.css">
+	<link rel="icon" type="image/png" href="">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+
+
+<div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+  <div class="plus-icon">
+  <div class="bar horizontal"></div>
+  <div class="bar vertical"></div>
+</div>
+</div>
+
+<div id="modal-menu" class="modal">
+  <!-- <span class="close-modal" onclick="closeMenu()">×</span> -->
+  <div class="modal-content">
+    <a href="project.html">Project</a>
+    <a href="brand.html">Brand</a>
+    <a href="note.html">Note</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+
+
+<div class="about-text">
+  <p>Jaehee Shin is a Bag & Acc designer.</p>
+  <p>
+  If you are interested in the product, <span class="mobile-break"><br></span>please contact on
+
+  <select id="instaSelect">
+    <option value="">Instagram</option>
+    <option value="https://www.instagram.com/shinzehee/#">@shinzehee</option>
+  </select>
+
+  or by
+
+  <select id="emailSelect">
+    <option value="">e-mail</option>
+    <option value="mailto:ssin159@gmail.com">ssin159@gmail.com</option>
+  </select>.
+</p>
+</div>
+
+  <div class="image-description">
+  <p id="desc-line1"></p>
+  <p id="desc-line2"></p>
+  <p id="desc-line3"></p>
+  <p id="desc-line4"></p>
+  <p id="desc-line5"></p>
+  <p id="desc-line6"></p>
+
+
+</div>
+
+
+  <p class= "update"> Last update: 2025.07.16 </p>
+
+  <div class="slider-wrapper">
+  <div id="image-container"></div>
+</div>
+
+  
+<div id="loader" class="loader"></div>
+
+
+
+
+<script>
+
+
+//   const images = {
+//     can: [
+//       "can/250316_jaehee_Low_19.jpg",
+//       "can/250316_jaehee_Low_31.jpg",
+//     ],
+//     braidedhair: [
+//       "braidedhair/250316_jaehee_Low_40.jpg",
+//     ]
+//   };
+
+//   const projectDescriptions = {
+//   can: {
+//     line1: "Can",
+//     line2: "Type: bag",
+//     line3: "Material: Goat skin, Canvas",
+//     line4: "Year: 2025"
+//   },
+//   braidedhair: {
+//     line1: "Braided hair",
+//     line2: "Type: belt",
+//     line3: "Material: Cow leather, Brass buckle",
+//     line4: "Year: 2025"
+//   }
+// };
+
+  let currentIndex = 0;
+  let currentProject = "";
+  let isFirstLoad = true; // 🔑 최초 로딩 여부 체크용
+
+  const container = document.getElementById("image-container");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function showImage(index) {
+  const loader = document.getElementById("loader");
+  loader.style.display = "block"; // 🔵 로딩 시작
+
+  container.innerHTML = "";
+
+  const img = document.createElement("img");
+  img.src = images[currentProject][index];
+
+  img.onload = () => {
+    loader.style.display = "none"; // ✅ 이미지 완전히 로드되면 숨김
+    container.appendChild(img);
+
+    // 최초 로딩 시에만 페이드인 효과
+    if (isFirstLoad) {
+      img.classList.add("pre-fade");
+      requestAnimationFrame(() => {
+        img.classList.add("fade-in");
+        img.classList.remove("pre-fade");
+      });
+      isFirstLoad = false;
+    }
+  };
+}
+
+
+window.addEventListener("DOMContentLoaded", () => {
+  let currentPage = location.pathname.split("/").pop() || "index.html";
+
+  // 확장자 누락된 경우 강제로 .html 붙이기
+  if (!currentPage.includes(".html")) {
+    currentPage += ".html";
+  }
+
+  // 메뉴 활성화
+  document.querySelectorAll(".modal-content a").forEach(link => {
+    const linkHref = link.getAttribute("href");
+    if (linkHref === currentPage) {
+      link.classList.add("active-menu");
+    }
+  });
+});
+
+  // if (images[currentProject]) {
+  //   showImage(currentIndex);
+  //   prevBtn.style.display = "block";
+  //   nextBtn.style.display = "block";
+
+  //   const desc = projectDescriptions[currentProject];
+  //   document.getElementById("desc-line1").textContent = desc.line1;
+  //   document.getElementById("desc-line2").textContent = desc.line2;
+  //   document.getElementById("desc-line3").textContent = desc.line3;
+  //   document.getElementById("desc-line4").textContent = desc.line4;
+  //   document.getElementById("desc-line5").textContent = desc.line5;
+  //   document.getElementById("desc-line6").textContent = desc.line6;
+  // }
+
+
+
+
+
+  // prevBtn.addEventListener("click", () => {
+  //   if (currentIndex > 0) {
+  //     currentIndex--;
+  //     showImage(currentIndex);
+  //   }
+  // });
+
+  // nextBtn.addEventListener("click", () => {
+  //   if (currentIndex < images[currentProject].length - 1) {
+  //     currentIndex++;
+  //     showImage(currentIndex);
+  //   }
+  // });
+
+
+  function toggleMenu() {
+  const modal = document.getElementById("modal-menu");
+  const toggle = document.getElementById("menuToggle");
+
+  const isOpen = modal.classList.contains("show");
+
+  
+
+  if (isOpen) {
+    modal.classList.remove("show");
+    toggle.classList.remove("rotate");
+
+    // 강제로 트랜지션 제거
+    modal.style.transition = "none";
+
+    // opacity가 0이 되더라도 트랜지션 없이 바로 적용되게
+    requestAnimationFrame(() => {
+      modal.style.opacity = "0";
+      modal.style.pointerEvents = "none";
+    });
+
+  } else {
+
+     // 모달 열기: 트랜지션 추가 후 show 클래스 추가
+    modal.style.transition = "opacity 0.7s ease";
+    modal.style.opacity = "";
+    modal.style.pointerEvents = "";
+
+    modal.classList.add("show");
+    toggle.classList.add("rotate");
+  }
+}
+
+
+
+  function toggleDropdown(id) {
+    const target = document.getElementById(id);
+    const isVisible = target.style.display === "block";
+
+    // 모든 드롭다운 닫기
+    document.querySelectorAll('.dropdown-content').forEach(el => {
+      el.style.display = "none";
+    });
+
+    // 클릭한 것만 열기
+    if (!isVisible) {
+      target.style.display = "block";
+    }
+  }
+
+ document.getElementById("instaSelect").addEventListener("change", function () {
+  const url = this.value;
+  if (url) {
+    window.open(url, "_blank");
+    this.selectedIndex = 0;
+  }
+});
+
+document.getElementById("emailSelect").addEventListener("change", function () {
+  const url = this.value;
+  if (url) {
+    window.location.href = url;
+    this.selectedIndex = 0;
+  }
+});
+
+</script>
+</body>
+</html>

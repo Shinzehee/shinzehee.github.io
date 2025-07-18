@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jaehee Shin</title>
+	<meta name="description" content="설명">
+	<meta name="keywords" content="키워드1, 키워드2">
+	<meta property="og:image" content="">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" href="">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+ <div id="pageWrapper">
+    <div class="about-text">
+      <p>Jaehee  
+        <select id="instaSelect">
+          <option value=""></option>
+          <option value="https://jaeheeshin.kr/project.html">Shin</option>
+        </select>
+      </p>
+    </div>
+  </div>
+
+
+<script>
+
+
+   document.getElementById('instaSelect').addEventListener('change', function () {
+    const url = this.value;
+    const wrapper = document.getElementById('pageWrapper');
+     if (url && wrapper) {
+      // 1초 대기 후 페이드아웃 시작
+      setTimeout(() => {
+        wrapper.classList.add('fade-out');
+
+        // 페이드아웃 1초 후 링크 이동
+        setTimeout(() => {
+          window.location.href = url;
+        }, 1500); // 페이드 시간
+
+      }, 100); // 첫 1초 지연
+    }
+  });
+</script>
+
+
+
+</body>
+</html>
