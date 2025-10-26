@@ -67,11 +67,9 @@
 
 
   const images = {
-
     puppet: [
       "images/21.jpg",
       "images/03.jpg",
-
     ],
     can: [
       "images/250316_jaehee_Low_19.jpg",
@@ -100,7 +98,6 @@
   };
 
   const projectDescriptions = {
-
   puppet: {
     line1:"Type: Pouch",
     line2: "Material: Lamb skin, Cow leather",
@@ -198,8 +195,8 @@ document.getElementById("project-select").addEventListener("change", function ()
 
 window.addEventListener("DOMContentLoaded", () => {
   const projectSelect = document.getElementById("project-select");
-  projectSelect.value = "can";
-  currentProject = "can";
+  projectSelect.value = "puppet";
+  currentProject = "puppet";
 
   showImagesVertically();  // 슬라이드 대신 세로 나열
 
