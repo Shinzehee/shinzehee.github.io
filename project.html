@@ -156,11 +156,11 @@ function applyOverlayIfLastImage() {
 
 
 const projectCredits = {
-  peppet: {
+  puppet: {
     line1: "Photography: Minha Park",
     line2: "H/M: Hwajin Lee",
     line3: "Model: Jooyoung Jung, Nayoung Kang"
-  }
+  },
   can: {
     line1: "Photography: San Choi",
     line2: "Hair: Taehyun Kim",
@@ -198,8 +198,8 @@ document.getElementById("project-select").addEventListener("change", function ()
 
 window.addEventListener("DOMContentLoaded", () => {
   const projectSelect = document.getElementById("project-select");
-  projectSelect.value = "puppet";
-  currentProject = "puppet";
+  projectSelect.value = "can";
+  currentProject = "can";
 
   showImagesVertically();  // 슬라이드 대신 세로 나열
 
