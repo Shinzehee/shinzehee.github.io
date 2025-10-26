@@ -22,6 +22,15 @@ body {
   height: auto;
 }
 
+#image-container img[src*="images/21.jpg"],
+#image-container img[src*="images/Puppetillust.jpg"],
+#image-container img[src*="images/fair01.jpg"],
+#image-container img[src*="images/09.jpg"],
+#image-container img[src*="images/06.jpg"],
+#image-container img[src*="images/fair02.jpg"] {
+  filter: blur(8px);
+  transition: filter 0.5s ease;
+}
 
 .modal-content a.active-menu {
   position: relative;
