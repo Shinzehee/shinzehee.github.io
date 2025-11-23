@@ -22,7 +22,7 @@ body {
   height: auto;
 }
 
-#image-container img[src*="images/21.jpg"],
+/*#image-container img[src*="images/21.jpg"],
 #image-container img[src*="images/11.jpg"],
 #image-container img[src*="images/fair01.jpg"],
 #image-container img[src*="images/09.jpg"],
@@ -31,7 +31,7 @@ body {
 #image-container img[src*="images/18.jpg"]{
   filter: blur(30px);
   transition: filter 0.5s ease;
-}
+}*/
 
 .modal-content a.active-menu {
   position: relative;
@@ -264,7 +264,7 @@ opacity: 0.8;
     font-weight: 400;
   }
 
-#image-container img[src*="images/21.jpg"],
+/*#image-container img[src*="images/21.jpg"],
 #image-container img[src*="images/11.jpg"],
 #image-container img[src*="images/fair01.jpg"],
 #image-container img[src*="images/09.jpg"],
@@ -273,7 +273,7 @@ opacity: 0.8;
 #image-container img[src*="images/18.jpg"]{
   filter: blur(30px);
   transition: filter 0.5s ease;
-}
+}*/
 
 
 
