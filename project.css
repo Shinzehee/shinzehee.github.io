@@ -254,7 +254,7 @@ opacity: 0.8;
     flex-direction: row;
     gap: 20px;
   }
-  
+
   .image-meta {
   width: 500px;
   margin-top: 8px;
@@ -364,6 +364,27 @@ opacity: 0.8;
       z-index: 1000;
       opacity: 0.3;
     }    
+
+    /* 이미지 */
+  #image-container.vertical-images img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 이미지 + 메타 전체 래퍼 */
+  .image-wrapper {
+    width: 100%;
+    padding: 0 16px; /* 좌우 여백 */
+    box-sizing: border-box;
+  }
+
+  /* 이미지 아래 텍스트 */
+  .image-meta {
+    width: 100%;
+    font-size: 12px;
+  }
+}
 
 
   
