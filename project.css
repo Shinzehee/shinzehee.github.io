@@ -368,10 +368,11 @@ opacity: 0.8;
     /* 이미지 */
   
   #image-container.vertical-images img {
+    display: block;
     width: 100%;
     height: auto;
     max-width: 100%;
-    object-fit: contain;
+
   }
 
   .image-wrapper {
