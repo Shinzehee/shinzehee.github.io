@@ -366,23 +366,29 @@ opacity: 0.8;
     }    
 
     /* 이미지 */
+  
   #image-container.vertical-images img {
     width: 100%;
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
+    object-fit: contain;
   }
 
-  /* 이미지 + 메타 전체 래퍼 */
   .image-wrapper {
     width: 100%;
-    padding: 0 16px; /* 좌우 여백 */
-    box-sizing: border-box;
+    max-width: 100%;
+    padding: 0 16px;
+    overflow: visible;
   }
 
-  /* 이미지 아래 텍스트 */
   .image-meta {
     width: 100%;
-    font-size: 12px;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  html, body {
+    overflow-x: visible;
   }
 }
 
