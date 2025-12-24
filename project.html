@@ -225,23 +225,17 @@ document.getElementById("project-select").addEventListener("change", function ()
 
 window.addEventListener("DOMContentLoaded", () => {
   const projectSelect = document.getElementById("project-select");
+  projectSelect.value = "puppet";
+  currentProject = "puppet";
 
-  // 🔑 저장된 프로젝트가 있으면 그걸 사용
-  const savedProject = localStorage.getItem("lastProject");
-
-  currentProject = savedProject && images[savedProject]
-    ? savedProject
-    : "puppet";
-
-  projectSelect.value = currentProject;
-
-  showImagesVertically();
+  showImagesVertically();  // 슬라이드 대신 세로 나열
 
   const desc = projectDescriptions[currentProject];
   document.getElementById("desc-line1").textContent = desc.line1;
   document.getElementById("desc-line2").textContent = desc.line2;
   document.getElementById("desc-line3").textContent = desc.line3;
 });
+
 
 
 
