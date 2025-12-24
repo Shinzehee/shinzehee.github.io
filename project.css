@@ -254,6 +254,19 @@ opacity: 0.8;
     flex-direction: row;
     gap: 20px;
   }
+  
+  .image-meta {
+  width: 500px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #777;
+}
+
+.meta-right {
+  opacity: 0.3;
+}
 
   
 
