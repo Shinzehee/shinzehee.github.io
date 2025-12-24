@@ -72,6 +72,11 @@
     <span class="meta-left">Berlin</span>
     <span class="meta-right">7:32 AM</span>
   </div>
+
+  <div data-image="MJ899855.jpg">
+    <span class="meta-left">Your text here</span>
+    <span class="meta-right">Optional text</span>
+  </div>
 </div>
 
 <script>
@@ -336,6 +341,21 @@ function showImagesVertically() {
     img.loading = "lazy";
 
     wrapper.appendChild(img);
+    // 🔹 이미지 파일명만 추출
+const filename = src.split("/").pop();
+
+// 🔹 HTML에 저장된 메타 텍스트 찾기
+const metaSource = document.querySelector(
+  `.image-meta-pool [data-image="${filename}"]`
+);
+
+// 🔹 있으면 이미지 아래에 복사해서 붙이기
+if (metaSource) {
+  const meta = document.createElement("div");
+  meta.className = "image-meta";
+  meta.innerHTML = metaSource.innerHTML;
+  wrapper.appendChild(meta);
+}
     container.appendChild(wrapper);
 
     // 마지막 이미지인 경우 크레딧도 같이 붙이기
