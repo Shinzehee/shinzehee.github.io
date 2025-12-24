@@ -269,13 +269,14 @@ opacity: 0.8;
 }
 
 .blink {
+  display: inline-block; /* ← 중요 */
   animation: blinkColon 1s steps(1) infinite;
 }
 
 @keyframes blinkColon {
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
-  100% { opacity: 1; }
+  0%   { visibility: visible; }
+  50%  { visibility: hidden; }
+  100% { visibility: visible; }
 }
   
 
