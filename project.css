@@ -279,6 +279,13 @@ opacity: 0.8;
   100% { visibility: visible; }
 }
   
+/* 🔴 Puppet (Berlin) 블러 처리 */
+.puppetber-blur {
+  filter: blur(18px);
+  opacity: 0.7;
+  pointer-events: none; /* 클릭 방지 */
+  transition: filter 0.4s ease, opacity 0.4s ease;
+}
 
 @media screen and (max-width: 768px) {
 
