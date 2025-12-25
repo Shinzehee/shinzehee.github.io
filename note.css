@@ -256,6 +256,17 @@ opacity: 0.8;
 @media screen and (max-width: 768px) {
 
 
+ body {
+    min-width: 5000px;
+    min-height: 4000px;
+    overflow: auto;
+  }
+
+  html {
+    overflow: auto;
+  }
+
+
  .image-description {
     top: 65px;
     left: 23px;
