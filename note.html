@@ -316,11 +316,17 @@ function showImagesVertically() {
 }
 
   window.addEventListener("load", () => {
-    const centerX = (document.body.scrollWidth - window.innerWidth) / 2;
-    const centerY = (document.body.scrollHeight - window.innerHeight) / 2;
+  const doc = document.documentElement;
 
-    window.scrollTo(centerX, centerY);
+  const centerX = (doc.scrollWidth - window.innerWidth) / 2;
+  const centerY = (doc.scrollHeight - window.innerHeight) / 2;
+
+  doc.scrollTo({
+    left: centerX,
+    top: centerY,
+    behavior: "instant" // 모바일에서 중요
   });
+});
 
 
 </script>
