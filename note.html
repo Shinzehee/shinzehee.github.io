@@ -315,11 +315,11 @@ function showImagesVertically() {
   });
 }
 
- window.addEventListener("load", () => {
-    window.scrollTo(
-      (document.body.scrollWidth - window.innerWidth) / 2,
-      (document.body.scrollHeight - window.innerHeight) / 2
-    );
+  window.addEventListener("load", () => {
+    const centerX = (document.body.scrollWidth - window.innerWidth) / 2;
+    const centerY = (document.body.scrollHeight - window.innerHeight) / 2;
+
+    window.scrollTo(centerX, centerY);
   });
 
 
