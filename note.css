@@ -83,38 +83,6 @@ html, body {
   align-items: flex-start; /* ← 이미지와 크레딧 모두 왼쪽 정렬 */
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* 스크롤 제거 */
-}
-
-/* 화면 */
-#infinite-canvas {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  cursor: grab;
-}
-
-/* 실제 캔버스 */
-#canvas-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 3000px;
-  height: 3000px;
-
-  transform: translate(-50%, -50%);
-}
-
-/* 드래그 중 */
-#infinite-canvas.dragging {
-  cursor: grabbing;
-}
-
-
 
 
 #project-select {
