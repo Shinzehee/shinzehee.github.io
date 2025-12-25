@@ -251,7 +251,14 @@ opacity: 0.8;
     gap: 20px;
   }
 
-  
+  #canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4000px;
+  height: 5000px;
+  pointer-events: none; /* 클릭 방해 X */
+}
 
 @media screen and (max-width: 768px) {
 
