@@ -318,6 +318,38 @@ function showImagesVertically() {
 }
 
 
+<script>
+const canvas = document.getElementById("infinite-canvas");
+const content = document.getElementById("canvas-content");
+
+let isDragging = false;
+let startX, startY;
+let currentX = 0, currentY = 0;
+
+canvas.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  canvas.classList.add("dragging");
+  startX = e.clientX - currentX;
+  startY = e.clientY - currentY;
+});
+
+window.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  currentX = e.clientX - startX;
+  currentY = e.clientY - startY;
+
+  content.style.transform = `
+    translate(${currentX}px, ${currentY}px)
+  `;
+});
+
+window.addEventListener("mouseup", () => {
+  isDragging = false;
+  canvas.classList.remove("dragging");
+});
+</script>
+
 </script>
 
  </div>
