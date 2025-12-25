@@ -316,14 +316,18 @@ function showImagesVertically() {
 }
 
  window.addEventListener("load", () => {
-  setTimeout(() => {
-    const body = document.body;
+  requestAnimationFrame(() => {
+    const doc = document.documentElement;
 
-    const centerX = (body.scrollWidth - window.innerWidth) / 2;
-    const centerY = (body.scrollHeight - window.innerHeight) / 2;
+    const centerX = (doc.scrollWidth - window.innerWidth) / 2;
+    const centerY = (doc.scrollHeight - window.innerHeight) / 2;
 
-    window.scrollTo(centerX, centerY);
-  }, 0);
+    window.scrollTo({
+      left: centerX,
+      top: centerY,
+      behavior: "auto"
+    });
+  });
 });
 
 
