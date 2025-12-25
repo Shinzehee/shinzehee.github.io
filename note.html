@@ -36,7 +36,6 @@
   <option value="" selected disabled>Coming soon...</option>
 </select>
 
-
   <div class="image-description">
   <p id="desc-line1"></p>
   <p id="desc-line2"></p>
@@ -51,15 +50,11 @@
 
   <p class= "update"> Last update: 2025.12.25 </p>
 
-<div id="infinite-canvas">
-  <div id="canvas-content">
 
   <div class="slider-wrapper">
   <div id="image-container"></div>
 </div>
 
- </div>
-</div>
 
   
 <div id="loader" class="loader"></div>
@@ -320,35 +315,12 @@ function showImagesVertically() {
   });
 }
 
-const canvas = document.getElementById("infinite-canvas");
-const content = document.getElementById("canvas-content");
-
-let isDragging = false;
-let startX = 0;
-let startY = 0;
-let currentX = -1500;
-let currentY = -1500;
-
-canvas.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  startX = e.clientX - currentX;
-  startY = e.clientY - currentY;
-  canvas.classList.add("dragging");
-});
-
-window.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-
-  currentX = e.clientX - startX;
-  currentY = e.clientY - startY;
-
-  content.style.transform = `translate(${currentX}px, ${currentY}px)`;
-});
-
-window.addEventListener("mouseup", () => {
-  isDragging = false;
-  canvas.classList.remove("dragging");
-});
+ window.addEventListener("load", () => {
+    window.scrollTo(
+      (document.body.scrollWidth - window.innerWidth) / 2,
+      (document.body.scrollHeight - window.innerHeight) / 2
+    );
+  });
 
 
 </script>
