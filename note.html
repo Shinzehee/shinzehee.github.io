@@ -315,17 +315,15 @@ function showImagesVertically() {
   });
 }
 
-  window.addEventListener("load", () => {
-  const doc = document.documentElement;
+ window.addEventListener("load", () => {
+  setTimeout(() => {
+    const body = document.body;
 
-  const centerX = (doc.scrollWidth - window.innerWidth) / 2;
-  const centerY = (doc.scrollHeight - window.innerHeight) / 2;
+    const centerX = (body.scrollWidth - window.innerWidth) / 2;
+    const centerY = (body.scrollHeight - window.innerHeight) / 2;
 
-  doc.scrollTo({
-    left: centerX,
-    top: centerY,
-    behavior: "instant" // 모바일에서 중요
-  });
+    window.scrollTo(centerX, centerY);
+  }, 0);
 });
 
 
