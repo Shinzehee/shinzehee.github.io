@@ -27,8 +27,8 @@ html, body {
 
 /* 🔥 여기서 대지를 키운다 */
 body {
-  min-width: 5000px;   /* 좌우로 넓게 */
-  min-height: 4000px; /* 위아래로 넓게 */
+  min-width: 4000px;   /* 좌우로 넓게 */
+  min-height: 5000px; /* 위아래로 넓게 */
 }
 
 
@@ -257,8 +257,8 @@ opacity: 0.8;
 
 
  body {
-    min-width: 5000px;
-    min-height: 4000px;
+    min-width: 4000px;
+    min-height: 5000px;
     overflow: auto;
   }
 
