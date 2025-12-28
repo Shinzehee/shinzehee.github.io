@@ -207,6 +207,7 @@ opacity: 0.8;
   display: inline-block;        /* 밑줄 길이를 텍스트에 맞춤 */
   padding-bottom: 4px;          /* 밑줄과 텍스트 간격 */
   border-bottom: 1.5px solid #000;
+  width: 500px;              /* 이미지랑 동일 폭 */
 }
 
 
