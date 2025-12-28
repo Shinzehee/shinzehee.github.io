@@ -260,6 +260,15 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("desc-line1").textContent = desc.line1;
   document.getElementById("desc-line2").textContent = desc.line2;
   document.getElementById("desc-line3").textContent = desc.line3;
+
+  const berlinToggle = document.getElementById("toggle-berlin");
+
+if (currentProject === "puppet") {
+  berlinToggle.style.display = "block";
+} else {
+  berlinToggle.style.display = "none";
+}
+
 });
 
 
@@ -446,13 +455,6 @@ toggleBerlin.addEventListener("click", () => {
   berlinOpened = true;
 });
 
-const berlinToggle = document.getElementById("toggle-berlin");
-
-if (currentProject === "puppet") {
-  berlinToggle.style.display = "block";
-} else {
-  berlinToggle.style.display = "none";
-}
 
 
 
