@@ -56,7 +56,7 @@
 
   <div class="slider-wrapper">
   <div id="image-container"></div>
-  <p class="project-extra">&gt;&nbsp;Puppet (in Berlin)</p>
+  <p class="project-extra" id="toggle-berlin">&gt;&nbsp;Puppet (in Berlin)</p>
 </div>
 
   
@@ -394,6 +394,57 @@ if (metaSource) {
     }
   });
 }
+
+const toggleBerlin = document.getElementById("toggle-berlin");
+let berlinOpened = false;
+
+toggleBerlin.addEventListener("click", () => {
+  if (berlinOpened) return; // 이미 열렸으면 아무것도 안 함
+
+  const container = document.getElementById("image-container");
+  const imgList = images["puppetber"];
+  const creditData = projectCredits["puppetber"];
+
+  imgList.forEach((src, index) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "image-wrapper";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.loading = "lazy";
+
+    wrapper.appendChild(img);
+
+    // 메타데이터 붙이기
+    const filename = src.split("/").pop();
+    const metaSource = document.querySelector(
+      `.image-meta-pool [data-image="${filename}"]`
+    );
+
+    if (metaSource) {
+      const meta = document.createElement("div");
+      meta.className = "image-meta";
+      meta.innerHTML = metaSource.innerHTML;
+      wrapper.appendChild(meta);
+    }
+
+    // 마지막 이미지면 크레딧
+    if (index === imgList.length - 1) {
+      const credit = document.createElement("p");
+      credit.className = "image-credit";
+      credit.innerHTML = `
+        ${creditData.line1}<br>
+        ${creditData.line2}<br>
+        ${creditData.line3}
+      `;
+      wrapper.appendChild(credit);
+    }
+
+    container.appendChild(wrapper);
+  });
+
+  berlinOpened = true;
+});
 
 
 
