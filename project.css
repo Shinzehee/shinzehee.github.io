@@ -208,6 +208,7 @@ opacity: 0.8;
   color: #000;
   text-decoration: underline;
   cursor: default;           /* 아직 링크 아님 */
+  text-underline-offset: 2px;   /* ← 이 줄 추가 */
 }
 
 .plus-icon {
