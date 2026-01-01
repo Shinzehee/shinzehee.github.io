@@ -248,7 +248,7 @@ opacity: 0.8;
   size: 30px;
   top: 30px;
   right: 40px;
-  z-index: 4001;
+  z-index: 4002;
   cursor: pointer;
  
 }
@@ -288,6 +288,7 @@ opacity: 0.8;
 
 .menu-toggle.rotate .plus-icon {
   transform: rotate(45deg);
+  z-index: 4002;
 }
 
 .image-overlay::after {
