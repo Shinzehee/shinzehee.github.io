@@ -190,6 +190,51 @@ opacity: 0.8;
   font-weight: 400;
 }
 
+.berlin-overlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 3000;
+  display: none;            /* 🔴 핵심 */
+}
+
+.berlin-overlay.show {
+  display: block;           /* 🔴 핵심 */
+}
+
+.berlin-inner {
+  padding-top: 120px;
+}
+
+/* 헤더 */
+.berlin-header {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.berlin-close {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+/* Berlin 이미지 */
+#berlin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+#berlin-container img {
+  width: 500px;
+  height: auto;
+}
+
 
   .menu-toggle {
   position: fixed;
