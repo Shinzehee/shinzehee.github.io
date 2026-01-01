@@ -100,7 +100,7 @@ font-size: 17px;    /* 글씨 크기 */
 position: fixed;
 left: 40px;
 top: 35px;
-z-index: 1000;
+z-index: 4000;
 opacity: 0.8;
 }
 
