@@ -368,6 +368,21 @@ opacity: 0.8;
 }*/
 
 
+ .project-image-wrap {
+    width: 100%;
+    max-width: 100%;
+    position: relative; /* 텍스트 위치 기준 */
+    overflow: hidden;
+  }
+
+  /* 2️⃣ 이미지 크기 강제 제어 */
+  .project-image-wrap img {
+    width: 100%;
+    height: auto;          /* 비율 유지 */
+    max-height: 70vh;      /* 모바일에서 너무 커지는 것 방지 */
+    object-fit: cover;
+    display: block;
+
 
  .image-description {
     top: 65px;
