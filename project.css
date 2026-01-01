@@ -124,6 +124,7 @@ opacity: 0.8;
   font-size: 24px;
   font-weight: normal;
   cursor: pointer;
+  z-index: 4002;
  
 }
 
@@ -433,6 +434,7 @@ opacity: 0.8;
 .menu-toggle {
     top: 10px;
     right: 10px;
+    z-index: 4002;
   }
 
 .update {
