@@ -368,7 +368,18 @@ opacity: 0.8;
 }*/
 
 
+#berlin-container img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
+/* wrapper도 동일 기준 */
+#berlin-container .image-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
 
 
  .image-description {

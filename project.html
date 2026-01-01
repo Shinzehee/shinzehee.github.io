@@ -480,7 +480,8 @@ function openBerlin() {
 });
 
 
-  document.body.style.overflow = "hidden"; // 배경 스크롤 차단
+  document.body.style.overflow = "hidden";
+document.documentElement.style.overflow = "hidden";
 }
 
 function closeBerlinOverlay() {
