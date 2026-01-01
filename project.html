@@ -56,7 +56,9 @@
 
   <div class="slider-wrapper">
   <div id="image-container"></div>
-  <p class="project-extra" id="toggle-berlin">&gt;&nbsp;Puppet (in Berlin)</p>
+  <p class="project-extra puppetber-blur" id="toggle-berlin">
+  &gt;&nbsp;Puppet (in Berlin)
+</p>
 </div>
 
   
@@ -259,9 +261,6 @@ document.getElementById("project-select").addEventListener("change", function ()
 window.addEventListener("DOMContentLoaded", () => {
   const projectSelect = document.getElementById("project-select");
   
-const toggleBerlin = document.getElementById("toggle-berlin");
-  toggleBerlin.classList.add("puppetber-blur"); // 🔒 잠금
-
   // 🔑 저장된 프로젝트가 있으면 그걸 사용
   const savedProject = localStorage.getItem("lastProject");
 
