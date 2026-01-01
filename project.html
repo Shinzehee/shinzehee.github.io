@@ -82,16 +82,17 @@
   </div>
 </div>
 
+
 <div id="berlin-overlay" class="berlin-overlay">
   <div class="berlin-inner">
     <div class="berlin-header">
       <span class="berlin-title">Puppet (in Berlin)</span>
       <span class="berlin-close" id="closeBerlin">×</span>
     </div>
-
     <div id="berlin-container"></div>
   </div>
 </div>
+
 
 
 
@@ -420,7 +421,9 @@ if (metaSource) {
 
 const berlinOverlay = document.getElementById("berlin-overlay");
 const berlinContainer = document.getElementById("berlin-container");
-const closeBerlin = document.getElementById("closeBerlin");
+const closeBerlin = document.getElementById("closeBerlin")
+const toggleBerlin = document.getElementById("toggle-berlin");
+;
 
 toggleBerlin.addEventListener("click", () => {
   openBerlin();
