@@ -82,6 +82,19 @@
   </div>
 </div>
 
+<div id="berlin-overlay" class="berlin-overlay">
+  <div class="berlin-inner">
+    <div class="berlin-header">
+      <span class="berlin-title">Puppet (in Berlin)</span>
+      <span class="berlin-close" id="closeBerlin">×</span>
+    </div>
+
+    <div id="berlin-container"></div>
+  </div>
+</div>
+
+
+
 <script>
 
 
@@ -405,15 +418,24 @@ if (metaSource) {
   });
 }
 
-const toggleBerlin = document.getElementById("toggle-berlin");
-let berlinOpened = false;
+const berlinOverlay = document.getElementById("berlin-overlay");
+const berlinContainer = document.getElementById("berlin-container");
+const closeBerlin = document.getElementById("closeBerlin");
 
 toggleBerlin.addEventListener("click", () => {
-  if (berlinOpened) return; // 이미 열렸으면 아무것도 안 함
+  openBerlin();
+});
 
-  const container = document.getElementById("image-container");
-  const imgList = images["puppetber"];
-  const creditData = projectCredits["puppetber"];
+closeBerlin.addEventListener("click", closeBerlinOverlay);
+window.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeBerlinOverlay();
+});
+
+function openBerlin() {
+  berlinContainer.innerHTML = "";
+
+  const imgList = images.puppetber;
+  const creditData = projectCredits.puppetber;
 
   imgList.forEach((src, index) => {
     const wrapper = document.createElement("div");
@@ -422,10 +444,9 @@ toggleBerlin.addEventListener("click", () => {
     const img = document.createElement("img");
     img.src = src;
     img.loading = "lazy";
-
     wrapper.appendChild(img);
 
-    // 메타데이터 붙이기
+    // 메타
     const filename = src.split("/").pop();
     const metaSource = document.querySelector(
       `.image-meta-pool [data-image="${filename}"]`
@@ -438,7 +459,7 @@ toggleBerlin.addEventListener("click", () => {
       wrapper.appendChild(meta);
     }
 
-    // 마지막 이미지면 크레딧
+    // 마지막 크레딧
     if (index === imgList.length - 1) {
       const credit = document.createElement("p");
       credit.className = "image-credit";
@@ -450,11 +471,17 @@ toggleBerlin.addEventListener("click", () => {
       wrapper.appendChild(credit);
     }
 
-    container.appendChild(wrapper);
+    berlinContainer.appendChild(wrapper);
   });
 
-  berlinOpened = true;
-});
+  berlinOverlay.classList.add("show");
+  document.body.style.overflow = "hidden"; // 배경 스크롤 차단
+}
+
+function closeBerlinOverlay() {
+  berlinOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
 
 
 
