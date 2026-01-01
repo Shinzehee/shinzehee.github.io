@@ -203,6 +203,7 @@ opacity: 0.8;
 }
 
 .berlin-overlay.show {
+  opacity: 1;
   pointer-events: auto;
 }
 
@@ -483,7 +484,7 @@ opacity: 0.8;
   }
 
   .berlin-inner {
-    padding-top: 100px;   /* ← 메인과 완전히 동일 */
+    padding-top: var(--mobile-image-offset);
     padding-left: 20px;
     padding-right: 20px;
   }
