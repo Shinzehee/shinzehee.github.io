@@ -482,6 +482,12 @@ opacity: 0.8;
     max-width: 100%;
     white-space: normal;
   }
+  
+  .berlin-inner {
+    padding-top: 100px;   /* ← 메인과 완전히 동일 */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   html, body {
     overflow-x: visible;
