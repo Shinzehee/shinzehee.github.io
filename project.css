@@ -203,7 +203,6 @@ opacity: 0.8;
 }
 
 .berlin-overlay.show {
-  opacity: 1;
   pointer-events: auto;
 }
 
@@ -482,7 +481,7 @@ opacity: 0.8;
     max-width: 100%;
     white-space: normal;
   }
-  
+
   .berlin-inner {
     padding-top: 100px;   /* ← 메인과 완전히 동일 */
     padding-left: 20px;
