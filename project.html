@@ -85,13 +85,6 @@
 </div>
 
 
-<div id="berlin-overlay" class="berlin-overlay">
-  <div class="berlin-inner">
-    <div class="berlin-header">
-    </div>
-    <div id="berlin-container"></div>
-  </div>
-</div>
 
 
 
@@ -171,40 +164,17 @@
   }
 };
 
-  let currentIndex = 0;
+ 
   let currentProject = "";
   let isFirstLoad = true; // 🔑 최초 로딩 여부 체크용
 
-  let overlayApplied = false; // ✅ 블러 적용 여부 플래그
+  
+  let berlinExpanded = false; // ✅ 이 줄 추가
 
 
 
 
-function applyOverlayIfLastImage() {
-  const isLast = currentIndex === images[currentProject].length - 1;
-  const overlayWrapper = document.querySelector(".image-overlay");
 
-  if (isLast && overlayWrapper && !overlayWrapper.classList.contains("show-filter")) {
-    overlayWrapper.classList.add("show-filter");
-
-    // 기존 크레딧 제거
-    const existingCredit = overlayWrapper.querySelector(".overlay-credit");
-    if (existingCredit) existingCredit.remove();
-
-    // 크레딧 생성
-    const credit = document.createElement("div");
-    credit.className = "overlay-credit";
-
-    const creditData = projectCredits[currentProject]; // 📌 동적으로 크레딧 가져오기
-    credit.innerHTML = `
-      <p>${creditData.line1}</p>
-      <p>${creditData.line2}</p>
-      <p>${creditData.line3}</p>
-    `;
-
-    overlayWrapper.appendChild(credit);
-  }
-}
 
 
 const projectCredits = {
@@ -237,11 +207,11 @@ const projectCredits = {
 
 document.getElementById("project-select").addEventListener("change", function () {
   currentProject = this.value;
+  berlinExpanded = false;
   localStorage.setItem("lastProject", currentProject); // ← 추가
   currentIndex = 0;
   isFirstLoad = true;
 
-  berlinOpened = false; // 🔴 이거 중요
   showImagesVertically(); // 슬라이드 대신 세로 나열
 
   const desc = projectDescriptions[currentProject];
@@ -260,8 +230,8 @@ document.getElementById("project-select").addEventListener("change", function ()
 
 window.addEventListener("DOMContentLoaded", () => {
   const projectSelect = document.getElementById("project-select");
-  
-  // 🔑 저장된 프로젝트가 있으면 그걸 사용
+  const toggleBerlin = document.getElementById("toggle-berlin");
+
   const savedProject = localStorage.getItem("lastProject");
 
   currentProject = savedProject && images[savedProject]
@@ -269,7 +239,6 @@ window.addEventListener("DOMContentLoaded", () => {
     : "puppet";
 
   projectSelect.value = currentProject;
-
   showImagesVertically();
 
   const desc = projectDescriptions[currentProject];
@@ -277,14 +246,14 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("desc-line2").textContent = desc.line2;
   document.getElementById("desc-line3").textContent = desc.line3;
 
-  const berlinToggle = document.getElementById("toggle-berlin");
+  // ✅ Berlin 펼치기 / 접기
+  toggleBerlin.addEventListener("click", () => {
+    if (toggleBerlin.classList.contains("puppetber-blur")) return;
+    berlinExpanded = !berlinExpanded;
+    showImagesVertically();
+  });
 
-if (currentProject === "puppet") {
-  berlinToggle.style.display = "block";
-} else {
-  berlinToggle.style.display = "none";
-}
-
+  toggleBerlin.style.display = currentProject === "puppet" ? "block" : "none";
 });
 
 
@@ -354,29 +323,19 @@ if (currentProject === "puppet") {
 
 
 
-  if (currentProject && images[currentProject]) {
-    if (currentIndex < images[currentProject].length - 1) {
-      currentIndex++;
-      showImage(currentIndex);
-    } else {
-      if (!overlayApplied) {
-        applyOverlayIfLastImage(); // 필터 덮기
-        overlayApplied = true;
-      } else {
-        currentIndex = 0;
-        overlayApplied = false;
-        showImage(currentIndex);
-      }
-    }
-  };
-
 
 function showImagesVertically() {
   const container = document.getElementById("image-container");
   container.innerHTML = "";
   container.classList.add("vertical-images");
 
-  const imgList = images[currentProject];
+  let imgList = [...images[currentProject]];
+
+// 🔥 Puppet 상태 + Berlin 펼침이면 뒤에 이어붙이기
+if (currentProject === "puppet" && berlinExpanded) {
+  imgList = imgList.concat(images.puppetber);
+}
+
   const creditData = projectCredits[currentProject];
 
   imgList.forEach((src, index) => {
@@ -419,77 +378,6 @@ if (metaSource) {
   });
 }
 
-const berlinOverlay = document.getElementById("berlin-overlay");
-const berlinContainer = document.getElementById("berlin-container");
-const closeBerlin = document.getElementById("closeBerlin")
-const toggleBerlin = document.getElementById("toggle-berlin");
-;
-
-toggleBerlin.addEventListener("click", () => {
-  openBerlin();
-});
-
-closeBerlin.addEventListener("click", closeBerlinOverlay);
-window.addEventListener("keydown", e => {
-  if (e.key === "Escape") closeBerlinOverlay();
-});
-
-function openBerlin() {
-  berlinContainer.innerHTML = "";
-
-  const imgList = images.puppetber;
-  const creditData = projectCredits.puppetber;
-
-  imgList.forEach((src, index) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "image-wrapper";
-
-    const img = document.createElement("img");
-    img.src = src;
-    img.loading = "lazy";
-    wrapper.appendChild(img);
-
-    // 메타
-    const filename = src.split("/").pop();
-    const metaSource = document.querySelector(
-      `.image-meta-pool [data-image="${filename}"]`
-    );
-
-    if (metaSource) {
-      const meta = document.createElement("div");
-      meta.className = "image-meta";
-      meta.innerHTML = metaSource.innerHTML;
-      wrapper.appendChild(meta);
-    }
-
-    // 마지막 크레딧
-    if (index === imgList.length - 1) {
-      const credit = document.createElement("p");
-      credit.className = "image-credit";
-      credit.innerHTML = `
-        ${creditData.line1}<br>
-        ${creditData.line2}<br>
-        ${creditData.line3}
-      `;
-      wrapper.appendChild(credit);
-    }
-
-    berlinContainer.appendChild(wrapper);
-  });
-
-  requestAnimationFrame(() => {
-  berlinOverlay.classList.add("show");
-});
-
-
-  document.body.style.overflow = "hidden";
-document.documentElement.style.overflow = "hidden";
-}
-
-function closeBerlinOverlay() {
-  berlinOverlay.classList.remove("show");
-  document.body.style.overflow = "";
-}
 
 
 
