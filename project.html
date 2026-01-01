@@ -207,10 +207,8 @@ const projectCredits = {
 
 document.getElementById("project-select").addEventListener("change", function () {
   currentProject = this.value;
-  berlinExpanded = false;
+  berlinExpanded = false; 
   localStorage.setItem("lastProject", currentProject); // ← 추가
-  currentIndex = 0;
-  isFirstLoad = true;
 
   showImagesVertically(); // 슬라이드 대신 세로 나열
 
