@@ -56,8 +56,7 @@
 
   <div class="slider-wrapper">
   <div id="image-container"></div>
-  <p class="project-extra puppetber-blur" id="toggle-berlin">
-  &gt;&nbsp;Puppet (in Berlin)
+  <p>&gt;&nbsp;Puppet (in Berlin)
 </p>
 </div>
 
@@ -244,13 +243,18 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("desc-line2").textContent = desc.line2;
   document.getElementById("desc-line3").textContent = desc.line3;
 
-  // ✅ Berlin 펼치기 / 접기
-  toggleBerlin.addEventListener("click", () => {
-    if (toggleBerlin.classList.contains("puppetber-blur")) return;
-    berlinExpanded = !berlinExpanded;
-    showImagesVertically();
-  });
+ toggleBerlin.addEventListener("click", () => {
+  if (toggleBerlin.classList.contains("puppetber-blur")) return;
 
+  berlinExpanded = !berlinExpanded;
+
+  toggleBerlin.innerHTML = berlinExpanded
+    ? "&gt;&nbsp;Puppet (in Berlin) — close"
+    : "&gt;&nbsp;Puppet (in Berlin)";
+
+  showImagesVertically();
+});
+ 
   toggleBerlin.style.display = currentProject === "puppet" ? "block" : "none";
 });
 
