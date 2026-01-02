@@ -65,7 +65,8 @@
 
 <div id="berlin-container"></div>
 
-  
+<p id="berlin-credit" class="image-credit"></p>
+
 <div id="loader" class="loader"></div>
 </div>
 
@@ -362,29 +363,29 @@ function showImagesVertically() {
 
 
 function updateProjectCredit() {
-  const creditBox = document.getElementById("project-credit");
-  if (!creditBox) return;
+  const mainCredit = document.getElementById("project-credit");
+  const berlinCredit = document.getElementById("berlin-credit");
 
-  // Berlin 펼침 상태면 puppetber 크레딧 사용
-  const key =
-    currentProject === "puppet" && berlinExpanded
-      ? "puppetber"
-      : currentProject;
+  // 🟢 Puppet / 기본 프로젝트 크레딧 (항상 고정)
+  const mainData = projectCredits[currentProject];
+  mainCredit.innerHTML = mainData
+    ? `${mainData.line1 || ""}<br>${mainData.line2 || ""}<br>${mainData.line3 || ""}`
+    : "";
 
-  const creditData = projectCredits[key];
-
-  if (!creditData) {
-    creditBox.innerHTML = "";
-    return;
+  // 🟢 Berlin 크레딧은 펼쳤을 때만
+  if (currentProject === "puppet" && berlinExpanded) {
+    const berlinData = projectCredits.puppetber;
+    berlinCredit.innerHTML = `
+      ${berlinData.line1 || ""}<br>
+      ${berlinData.line2 || ""}<br>
+      ${berlinData.line3 || ""}
+    `;
+    berlinCredit.style.display = "block";
+  } else {
+    berlinCredit.innerHTML = "";
+    berlinCredit.style.display = "none";
   }
-
-  creditBox.innerHTML = `
-    ${creditData.line1 || ""}<br>
-    ${creditData.line2 || ""}<br>
-    ${creditData.line3 || ""}
-  `;
 }
-
 
 
 
