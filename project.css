@@ -60,6 +60,7 @@ body {
   margin: 20px auto 70px; /* 이미지와 동일한 중심 */
   text-align: left;       /* 텍스트는 왼쪽 */
   font-size: 13px !important;
+  align-self: center;
   color: #777;
   margin-top: 20px;
   margin-bottom: 70px;
