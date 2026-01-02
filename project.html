@@ -55,14 +55,15 @@
   <p class= "update"> Last update: 2025.12.25 </p>
 
   <div class="slider-wrapper">
-  <div id="image-container"></div>
- <p id="toggle-berlin" class="project-extra">
-  &gt;&nbsp;Puppet (in Berlin)
-</p>
+ <div id="image-container"></div>
 
 <p id="project-credit" class="image-credit fixed-credit"></p>
 
-</div>
+<p id="toggle-berlin" class="project-extra">
+  &gt;&nbsp;Puppet (in Berlin)
+</p>
+
+<div id="berlin-container"></div>
 
   
 <div id="loader" class="loader"></div>
@@ -335,47 +336,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function showImagesVertically() {
   const container = document.getElementById("image-container");
+  const berlinContainer = document.getElementById("berlin-container");
+
   container.innerHTML = "";
-  container.classList.add("vertical-images");
+  berlinContainer.innerHTML = "";
 
-  let imgList = [...images[currentProject]];
+  container.className = "vertical-images";
+  berlinContainer.className = "vertical-images";
 
-// 🔥 Puppet 상태 + Berlin 펼침이면 뒤에 이어붙이기
-if (currentProject === "puppet" && berlinExpanded) {
-  imgList = imgList.concat(images.puppetber);
-}
-
-  const creditData = projectCredits[currentProject];
-
-  imgList.forEach((src, index) => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "image-wrapper";
-
-    const img = document.createElement("img");
-    img.src = src;
-    img.loading = "lazy";
-
-    wrapper.appendChild(img);
-    // 🔹 이미지 파일명만 추출
-const filename = src.split("/").pop();
-
-// 🔹 HTML에 저장된 메타 텍스트 찾기
-const metaSource = document.querySelector(
-  `.image-meta-pool [data-image="${filename}"]`
-);
-
-// 🔹 있으면 이미지 아래에 복사해서 붙이기
-if (metaSource) {
-  const meta = document.createElement("div");
-  meta.className = "image-meta";
-  meta.innerHTML = metaSource.innerHTML;
-  wrapper.appendChild(meta);
-}
-    container.appendChild(wrapper);
-
-   
+  // 🔹 Puppet / 기본 프로젝트 이미지
+  images[currentProject].forEach(src => {
+    container.appendChild(createImageWrapper(src));
   });
+
+  // 🔹 Berlin 이미지는 아래에만
+  if (currentProject === "puppet" && berlinExpanded) {
+    images.puppetber.forEach(src => {
+      berlinContainer.appendChild(createImageWrapper(src));
+    });
+  }
 }
+
+
 
 function updateProjectCredit() {
   const creditBox = document.getElementById("project-credit");
