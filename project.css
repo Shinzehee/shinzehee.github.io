@@ -59,7 +59,7 @@ body {
   width: 500px;
   margin: 20px auto 70px; /* 이미지와 동일한 중심 */
   text-align: left;       /* 텍스트는 왼쪽 */
-  font-size: 13px;
+  font-size: 13px !important;
   color: #777;
   margin-top: 20px;
   margin-bottom: 70px;
@@ -413,6 +413,9 @@ opacity: 0.8;
 
   }
 
+  .image-credit {
+  font-size: 13px !important;
+
   .image-wrapper {
     width: 100%;
     max-width: 100%;
@@ -421,7 +424,7 @@ opacity: 0.8;
 
   .image-meta {
     width: 100%;
-    max-width: 100%;
+    max-width: 100%;  
     white-space: normal;
   }
 
