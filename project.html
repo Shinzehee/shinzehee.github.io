@@ -67,11 +67,14 @@
   &gt;&nbsp;Puppet (in Berlin)
 </p>
 
+<p id="toggle-berlin-close" class="project-extra" style="display:none;">
+  &gt;&nbsp;Puppet (in Berlin) — close
+</p>
+
+
 <div id="berlin-container"></div>
-
 <p id="berlin-credit" class="image-credit"></p>
-
-<div id="loader" class="loader"></div>
+<p id="toggle-berlin-close" class="project-extra"></p>
 </div>
 
 
@@ -241,6 +244,7 @@ document.getElementById("project-select").addEventListener("change", function ()
 window.addEventListener("DOMContentLoaded", () => {
   const projectSelect = document.getElementById("project-select");
   const toggleBerlin = document.getElementById("toggle-berlin");
+  const toggleBerlinClose = document.getElementById("toggle-berlin-close");
 
   const savedProject = localStorage.getItem("lastProject");
 
@@ -258,6 +262,66 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("desc-line3").textContent = desc.line3;
 
  toggleBerlin.addEventListener("click", () => {
+  const toggleBerlin = document.getElementById("toggle-berlin");
+const toggleBerlinClose = document.getElementById("toggle-berlin-close");
+
+toggleBerlin.addEventListener("click", () => {
+  if (berlinExpanded) return;
+
+  berlinExpanded = true;
+
+  // 🔹 위 텍스트 즉시 제거
+  toggleBerlin.style.display = "none";
+
+  // 🔹 이미지 펼치기
+  showImagesVertically();
+  updateProjectCredit();
+
+  // 🔹 아래 close 텍스트 활성화
+  toggleBerlinClose.style.display = "block";
+
+  // 🔹 베를린 이미지 위치로 스크롤
+  requestAnimationFrame(() => {
+    const target = document.getElementById("berlin-start");
+    if (!target) return;
+
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.pageYOffset - 150,
+      behavior: "smooth"
+    });
+  });
+});
+
+toggleBerlinClose.addEventListener("click", () => {
+  const berlinContainer = document.getElementById("berlin-container");
+
+  // 🔹 접히는 애니메이션
+  Array.from(berlinContainer.children).forEach(el => {
+    el.classList.add("berlin-collapse");
+  });
+
+  // 🔹 애니메이션 끝난 후 정리
+  setTimeout(() => {
+    berlinExpanded = false;
+
+    showImagesVertically();
+    updateProjectCredit();
+
+    // 🔹 아래 close 제거
+    toggleBerlinClose.style.display = "none";
+
+    // 🔹 위 open 복귀
+    toggleBerlin.style.display = "block";
+
+    // 🔹 원래 위치로 스크롤
+    toggleBerlin.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }, 450);
+});
+
+
   if (toggleBerlin.classList.contains("puppetber-blur")) return;
 
   berlinExpanded = !berlinExpanded;
