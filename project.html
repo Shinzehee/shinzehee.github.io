@@ -280,7 +280,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!start) return;
 
     window.scrollTo({
-      top: start.getBoundingClientRect().top + window.pageYOffset - 150,
+      top: start.getBoundingClientRect().top + window.pageYOffset - 100,
       behavior: "smooth"
     });
   });
@@ -404,7 +404,7 @@ function showImagesVertically() {
 
   // 🔴 베를린 이미지들 사이 간격만 조절
   if (index !== 0) {
-    wrapper.style.marginTop = "200px"; // ← 여기 숫자만 조절
+    wrapper.style.marginTop = "150px"; // ← 여기 숫자만 조절
   }
 
   if (index === 0) {
