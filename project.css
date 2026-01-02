@@ -294,6 +294,8 @@ opacity: 0.8;
   body {
     font-family: "Helvetica neue","Roboto";
     font-weight: 400;
+    font-size: 13px;   /* ← 원래 PC랑 동일하게 고정 */
+    line-height: 1.4;  /* ← 기존 흐름 유지 */
   }
 
 /*#image-container img[src*="images/21.jpg"],
