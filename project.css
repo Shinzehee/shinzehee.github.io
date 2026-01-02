@@ -58,6 +58,7 @@ body {
 .image-credit {
   width: 100%;
   margin: 20px auto 70px; /* 이미지와 동일한 중심 */
+  transform: translateX(0); /* ← 이 줄 */
   text-align: left;       /* 텍스트는 왼쪽 */
   font-size: 13px !important;
   align-self: center;
