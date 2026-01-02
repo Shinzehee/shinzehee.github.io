@@ -309,7 +309,8 @@ opacity: 0.8;
 
 
 #berlin-container img {
-  width: 100%;
+  width: 500px;
+  margin: 0 auto;
   max-width: 100%;
   height: auto;
   display: block;
