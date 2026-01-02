@@ -60,6 +60,8 @@ body {
 }
 
 .image-credit {
+  width: 500px;
+  margin: 20px auto 90px; /* 가운데 정렬 + 아래 여백 */
   text-align: left;
   font-size: 13px;
   color: #777;
@@ -320,6 +322,7 @@ opacity: 0.8;
 
 /* wrapper도 동일 기준 */
 #berlin-container .image-wrapper {
+  margin-top: 120px;   /* 🔑 충분한 분리감 */
   width: 100%;
   max-width: 100%;
 }

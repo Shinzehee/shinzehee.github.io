@@ -266,10 +266,19 @@ window.addEventListener("DOMContentLoaded", () => {
   updateProjectCredit(); // ✅ 추가
 });
 
-  toggleBerlin.style.display = currentProject === "puppet" ? "block" : "none";
+ 
+ if (berlinExpanded) {
+    requestAnimationFrame(() => {
+      const target = document.getElementById("berlin-start");
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  }
 });
-
-
 
 
 
@@ -352,12 +361,16 @@ function showImagesVertically() {
     container.appendChild(createImageWrapper(src));
   });
 
-  // 🔹 Berlin 이미지는 아래에만
   if (currentProject === "puppet" && berlinExpanded) {
-    images.puppetber.forEach(src => {
-      berlinContainer.appendChild(createImageWrapper(src));
-    });
-  }
+  images.puppetber.forEach((src, index) => {
+    const wrapper = createImageWrapper(src);
+
+    if (index === 0) {
+      wrapper.id = "berlin-start"; // 🔑 기준점
+    }
+
+    berlinContainer.appendChild(wrapper);
+  });
 }
 
 
