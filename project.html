@@ -279,10 +279,15 @@ window.addEventListener("DOMContentLoaded", () => {
     const start = document.getElementById("berlin-start");
     if (!start) return;
 
-    window.scrollTo({
-      top: start.getBoundingClientRect().top + window.pageYOffset - 60,
-      behavior: "smooth"
-    });
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+// PC / 모바일 스크롤 보정값 분리
+const offset = isMobile ? 150 : 60;
+
+window.scrollTo({
+  top: start.getBoundingClientRect().top + window.pageYOffset - offset,
+  behavior: "smooth"
+  });
   });
 };
 
