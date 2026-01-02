@@ -391,17 +391,19 @@ function showImagesVertically() {
     container.appendChild(createImageWrapper(src));
   });
 
-  if (currentProject === "puppet" && berlinExpanded) {
+ if (currentProject === "puppet" && berlinExpanded) {
 
-    const anchor = document.createElement("div");
-  anchor.id = "berlin-anchor";
-  berlinContainer.appendChild(anchor);
+  // ✅ 베를린 전용 상단 여백 스페이서
+  const spacer = document.createElement("div");
+  spacer.style.height = "180px";   // ← 여기서 여백 조절
+  spacer.style.width = "100%";
+  berlinContainer.appendChild(spacer);
 
   images.puppetber.forEach((src, index) => {
     const wrapper = createImageWrapper(src);
 
     if (index === 0) {
-      wrapper.id = "berlin-start"; // 🔑 기준점
+      wrapper.id = "berlin-start"; // 🔑 스크롤 기준
     }
 
     berlinContainer.appendChild(wrapper);
