@@ -263,17 +263,28 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* ✅ OPEN */
   toggleBerlin.onclick = () => {
-    if (berlinExpanded) return;
+  if (berlinExpanded) return;
 
-    berlinExpanded = true;
-    toggleBerlin.style.display = "none";
+  berlinExpanded = true;
+  toggleBerlin.style.display = "none";
 
-    showImagesVertically();
-    updateProjectCredit();
+  showImagesVertically();
+  updateProjectCredit();
 
-    toggleBerlinClose.style.display = "block";
-    document.getElementById("berlin-credit").after(toggleBerlinClose);
-  };
+  toggleBerlinClose.style.display = "block";
+  document.getElementById("berlin-credit").after(toggleBerlinClose);
+
+  // ✅ 펼쳐진 첫 베를린 이미지로 자동 스크롤
+  requestAnimationFrame(() => {
+    const start = document.getElementById("berlin-start");
+    if (!start) return;
+
+    window.scrollTo({
+      top: start.getBoundingClientRect().top + window.pageYOffset - 150,
+      behavior: "smooth"
+    });
+  });
+};
 
   /* ✅ CLOSE */
   toggleBerlinClose.onclick = () => {
