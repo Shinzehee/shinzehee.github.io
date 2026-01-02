@@ -67,7 +67,7 @@ body {
 }
 
 #berlin-container img {
-  filter: blur(25px);
+  filter: blur(30px);
 }
 
 #image-container.vertical-images {
