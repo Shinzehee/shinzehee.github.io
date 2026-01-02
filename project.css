@@ -290,13 +290,7 @@ opacity: 0.8;
   100% { visibility: visible; }
 }
   
-/* 🔴 Puppet (Berlin) 블러 처리 */
-/*.puppetber-blur {
-  filter: blur(2px);
-  opacity: 1;
-  pointer-events: none; /* 클릭 방지 */
-  transition: filter 0.4s ease, opacity 0.4s ease;
-}*/
+
 
 @media screen and (max-width: 768px) {
 
@@ -391,6 +385,7 @@ opacity: 0.8;
 
  #image-container.vertical-images {
     padding-top: 100px;  /* 모바일용 여백 */
+     align-items: stretch; /* 🔑 핵심 */
   }
 
 
