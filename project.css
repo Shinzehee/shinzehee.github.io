@@ -85,7 +85,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; /* ← 이미지와 크레딧 모두 왼쪽 정렬 */
 }
 
 
