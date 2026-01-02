@@ -214,6 +214,7 @@ document.getElementById("project-select").addEventListener("change", function ()
   localStorage.setItem("lastProject", currentProject); // ← 추가
 
   showImagesVertically(); // 슬라이드 대신 세로 나열
+  updateProjectCredit(); // ✅ 추가
 
   const desc = projectDescriptions[currentProject];
   document.getElementById("desc-line1").textContent = desc.line1;
@@ -241,6 +242,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   projectSelect.value = currentProject;
   showImagesVertically();
+  updateProjectCredit(); // ✅ 추가
 
   const desc = projectDescriptions[currentProject];
   document.getElementById("desc-line1").textContent = desc.line1;
@@ -257,6 +259,7 @@ window.addEventListener("DOMContentLoaded", () => {
     : "&gt;&nbsp;Puppet (in Berlin)";
 
   showImagesVertically();
+  updateProjectCredit(); // ✅ 추가
 });
 
   toggleBerlin.style.display = currentProject === "puppet" ? "block" : "none";
