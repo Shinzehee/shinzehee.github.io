@@ -266,16 +266,23 @@ window.addEventListener("DOMContentLoaded", () => {
   updateProjectCredit(); // ✅ 추가
 
    if (berlinExpanded) {
-    requestAnimationFrame(() => {
-      const target = document.getElementById("berlin-start");
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
+  requestAnimationFrame(() => {
+    const target = document.getElementById("berlin-start");
+    if (!target) return;
+
+    const OFFSET = 80; // 👈 상단 여백 조절 포인트
+
+    const y =
+      target.getBoundingClientRect().top +
+      window.pageYOffset -
+      OFFSET;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth"
     });
-  }
+  });
+}
 });
 
 
@@ -379,7 +386,7 @@ function showImagesVertically() {
     const anchor = document.createElement("div");
   anchor.id = "berlin-anchor";
   berlinContainer.appendChild(anchor);
-  
+
   images.puppetber.forEach((src, index) => {
     const wrapper = createImageWrapper(src);
 
