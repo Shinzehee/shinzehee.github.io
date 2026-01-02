@@ -22,6 +22,8 @@ body {
   height: auto;
 }
 
+
+
 .vertical-images img {
   width: 500px;
   height: auto;
@@ -285,6 +287,26 @@ opacity: 0.8;
   100% { visibility: visible; }
 }
   
+
+
+
+.berlin-collapse {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@keyframes collapseUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}
+
 
 
 @media screen and (max-width: 768px) {
