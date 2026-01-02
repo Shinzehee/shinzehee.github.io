@@ -59,22 +59,22 @@
   <p class= "update"> Last update: 2025.12.25 </p>
 
   <div class="slider-wrapper">
- <div id="image-container"></div>
+  <div id="image-container"></div>
 
-<p id="project-credit" class="image-credit fixed-credit"></p>
+  <p id="project-credit" class="image-credit fixed-credit"></p>
 
-<p id="toggle-berlin" class="project-extra">
-  &gt;&nbsp;Puppet (in Berlin)
-</p>
+  <!-- 🔹 OPEN 텍스트 (처음 위치) -->
+  <p id="toggle-berlin" class="project-extra">
+    &gt;&nbsp;Puppet (in Berlin)
+  </p>
 
-<p id="toggle-berlin-close" class="project-extra" style="display:none;">
-  &gt;&nbsp;Puppet (in Berlin) — close
-</p>
+  <!-- 🔹 CLOSE 텍스트 (베를린 이미지 아래로 이동시킬 대상) -->
+  <p id="toggle-berlin-close" class="project-extra" style="display:none;">
+    &gt;&nbsp;Puppet (in Berlin) — close
+  </p>
 
-
-<div id="berlin-container"></div>
-<p id="berlin-credit" class="image-credit"></p>
-<p id="toggle-berlin-close" class="project-extra"></p>
+  <div id="berlin-container"></div>
+  <p id="berlin-credit" class="image-credit"></p>
 </div>
 
 
@@ -254,118 +254,49 @@ window.addEventListener("DOMContentLoaded", () => {
 
   projectSelect.value = currentProject;
   showImagesVertically();
-  updateProjectCredit(); // ✅ 추가
+  updateProjectCredit();
 
   const desc = projectDescriptions[currentProject];
   document.getElementById("desc-line1").textContent = desc.line1;
   document.getElementById("desc-line2").textContent = desc.line2;
   document.getElementById("desc-line3").textContent = desc.line3;
 
- toggleBerlin.addEventListener("click", () => {
-  const toggleBerlin = document.getElementById("toggle-berlin");
-const toggleBerlinClose = document.getElementById("toggle-berlin-close");
+  /* ✅ OPEN */
+  toggleBerlin.onclick = () => {
+    if (berlinExpanded) return;
 
-toggleBerlin.addEventListener("click", () => {
-  if (berlinExpanded) return;
-
-  berlinExpanded = true;
-
-  // 🔹 위 텍스트 즉시 제거
-  toggleBerlin.style.display = "none";
-
-  // 🔹 이미지 펼치기
-  showImagesVertically();
-  updateProjectCredit();
-
-  // 🔹 아래 close 텍스트 활성화
-  toggleBerlinClose.style.display = "block";
-
-  // 🔹 베를린 이미지 위치로 스크롤
-  requestAnimationFrame(() => {
-    const target = document.getElementById("berlin-start");
-    if (!target) return;
-
-    window.scrollTo({
-      top: target.getBoundingClientRect().top + window.pageYOffset - 150,
-      behavior: "smooth"
-    });
-  });
-});
-
-toggleBerlinClose.addEventListener("click", () => {
-  const berlinContainer = document.getElementById("berlin-container");
-
-  // 🔹 접히는 애니메이션
-  Array.from(berlinContainer.children).forEach(el => {
-    el.classList.add("berlin-collapse");
-  });
-
-  // 🔹 애니메이션 끝난 후 정리
-  setTimeout(() => {
-    berlinExpanded = false;
+    berlinExpanded = true;
+    toggleBerlin.style.display = "none";
 
     showImagesVertically();
     updateProjectCredit();
 
-    // 🔹 아래 close 제거
-    toggleBerlinClose.style.display = "none";
+    toggleBerlinClose.style.display = "block";
+    document.getElementById("berlin-credit").after(toggleBerlinClose);
+  };
 
-    // 🔹 위 open 복귀
-    toggleBerlin.style.display = "block";
+  /* ✅ CLOSE */
+  toggleBerlinClose.onclick = () => {
+    const berlinContainer = document.getElementById("berlin-container");
 
-    // 🔹 원래 위치로 스크롤
-    toggleBerlin.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
+    [...berlinContainer.children].forEach(el => {
+      el.classList.add("berlin-collapse");
     });
-  }, 450);
-});
 
+    setTimeout(() => {
+      berlinExpanded = false;
 
-  if (toggleBerlin.classList.contains("puppetber-blur")) return;
+      showImagesVertically();
+      updateProjectCredit();
 
-  berlinExpanded = !berlinExpanded;
-
-  toggleBerlin.innerHTML = berlinExpanded
-    ? "&gt;&nbsp;Puppet (in Berlin) — close"
-    : "&gt;&nbsp;Puppet (in Berlin)";
-
-  showImagesVertically();
-  updateProjectCredit(); // ✅ 추가
-
-   if (berlinExpanded) {
-  requestAnimationFrame(() => {
-    const target = document.getElementById("berlin-start");
-    if (!target) return;
-
-    const OFFSET = 150; // 👈 상단 여백 조절 포인트
-
-    const y =
-      target.getBoundingClientRect().top +
-      window.pageYOffset -
-      OFFSET;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth"
-    });
-  });
-}
-});
-
-
-
- if (berlinExpanded) {
-    requestAnimationFrame(() => {
-      const target = document.getElementById("berlin-anchor");
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    });
-  }
+      toggleBerlinClose.style.display = "none";
+      toggleBerlin.style.display = "block";
+      toggleBerlin.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }, 400);
+  };
 });
 
 
