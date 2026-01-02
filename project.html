@@ -282,7 +282,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
  if (berlinExpanded) {
     requestAnimationFrame(() => {
-      const target = document.getElementById("berlin-start");
+      const target = document.getElementById("berlin-anchor");
       if (target) {
         target.scrollIntoView({
           behavior: "smooth",
@@ -375,6 +375,11 @@ function showImagesVertically() {
   });
 
   if (currentProject === "puppet" && berlinExpanded) {
+
+    const anchor = document.createElement("div");
+  anchor.id = "berlin-anchor";
+  berlinContainer.appendChild(anchor);
+  
   images.puppetber.forEach((src, index) => {
     const wrapper = createImageWrapper(src);
 
