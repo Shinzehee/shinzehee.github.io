@@ -222,7 +222,7 @@ const projectCredits = {
 document.getElementById("project-select").addEventListener("change", function () {
   currentProject = this.value;
   berlinExpanded = false; 
-  localStorage.setItem("lastProject", currentProject); // ← 추가
+ 
 
   showImagesVertically(); // 슬라이드 대신 세로 나열
   updateProjectCredit(); // ✅ 추가
@@ -246,11 +246,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const toggleBerlin = document.getElementById("toggle-berlin");
   const toggleBerlinClose = document.getElementById("toggle-berlin-close");
 
-  const savedProject = localStorage.getItem("lastProject");
-
-  currentProject = savedProject && images[savedProject]
-    ? savedProject
-    : "puppet";
+  currentProject = "puppet";
 
   projectSelect.value = currentProject;
   showImagesVertically();
