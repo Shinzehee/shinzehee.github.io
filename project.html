@@ -374,7 +374,29 @@ if (metaSource) {
   });
 }
 
+function updateProjectCredit() {
+  const creditBox = document.getElementById("project-credit");
+  if (!creditBox) return;
 
+  // Berlin 펼침 상태면 puppetber 크레딧 사용
+  const key =
+    currentProject === "puppet" && berlinExpanded
+      ? "puppetber"
+      : currentProject;
+
+  const creditData = projectCredits[key];
+
+  if (!creditData) {
+    creditBox.innerHTML = "";
+    return;
+  }
+
+  creditBox.innerHTML = `
+    ${creditData.line1 || ""}<br>
+    ${creditData.line2 || ""}<br>
+    ${creditData.line3 || ""}
+  `;
+}
 
 
 
