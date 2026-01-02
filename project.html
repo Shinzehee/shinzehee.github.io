@@ -264,7 +264,20 @@ window.addEventListener("DOMContentLoaded", () => {
 
   showImagesVertically();
   updateProjectCredit(); // ✅ 추가
+
+   if (berlinExpanded) {
+    requestAnimationFrame(() => {
+      const target = document.getElementById("berlin-start");
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  }
 });
+
 
 
  if (berlinExpanded) {
