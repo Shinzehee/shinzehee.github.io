@@ -320,6 +320,7 @@ opacity: 0.8;
   margin-top: 250px;   /* 🔑 충분한 분리감 */
   width: 100%;
   max-width: 100%;x
+  align-items: center;
 }
 
 
@@ -413,7 +414,7 @@ opacity: 0.8;
 
   }
 
-  
+
 
   .image-wrapper {
     width: 100%;
