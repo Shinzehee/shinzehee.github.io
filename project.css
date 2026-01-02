@@ -56,7 +56,7 @@ body {
 }
 
 .image-credit {
-  width: 500px;
+  width: 100%;
   margin: 20px auto 70px; /* 이미지와 동일한 중심 */
   text-align: left;       /* 텍스트는 왼쪽 */
   font-size: 13px !important;
