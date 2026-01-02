@@ -67,6 +67,8 @@
 
   
 <div id="loader" class="loader"></div>
+</div>
+
 
 
 <div class="image-meta-pool" style="display:none;">
@@ -272,30 +274,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-//   prevBtn.addEventListener("click", () => {
-//     if (currentIndex > 0) {
-//       currentIndex--;
-//       showImage(currentIndex);
-//     }
-//   });
-
-//   nextBtn.addEventListener("click", () => {
-//   if (currentIndex < images[currentProject].length - 1) {
-//     currentIndex++;
-//     showImage(currentIndex);
-//   } else {
-//     if (!overlayApplied) {
-//       applyOverlayIfLastImage(); // 필터 덮기
-//       overlayApplied = true;
-//     } else {
-//       currentIndex = 0;
-//       overlayApplied = false;
-//       showImage(currentIndex);
-//     }
-//   }
-// });
-   
-
 
 
   function toggleMenu() {
@@ -332,6 +310,30 @@ window.addEventListener("DOMContentLoaded", () => {
 }
 
 
+
+function createImageWrapper(src) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "image-wrapper";
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.loading = "lazy";
+  wrapper.appendChild(img);
+
+  const filename = src.split("/").pop();
+  const metaSource = document.querySelector(
+    `.image-meta-pool [data-image="${filename}"]`
+  );
+
+  if (metaSource) {
+    const meta = document.createElement("div");
+    meta.className = "image-meta";
+    meta.innerHTML = metaSource.innerHTML;
+    wrapper.appendChild(meta);
+  }
+
+  return wrapper;
+}
 
 
 function showImagesVertically() {
