@@ -66,6 +66,10 @@ body {
   line-height: 1.4;
 }
 
+#berlin-container img {
+  filter: blur(25px);
+}
+
 #image-container.vertical-images {
   display: flex;
   flex-direction: column;
