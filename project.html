@@ -400,14 +400,19 @@ function showImagesVertically() {
   berlinContainer.appendChild(spacer);
 
   images.puppetber.forEach((src, index) => {
-    const wrapper = createImageWrapper(src);
+  const wrapper = createImageWrapper(src);
 
-    if (index === 0) {
-      wrapper.id = "berlin-start"; // 🔑 스크롤 기준
-    }
+  // 🔴 베를린 이미지들 사이 간격만 조절
+  if (index !== 0) {
+    wrapper.style.marginTop = "200px"; // ← 여기 숫자만 조절
+  }
 
-    berlinContainer.appendChild(wrapper);
-  });
+  if (index === 0) {
+    wrapper.id = "berlin-start";
+  }
+
+  berlinContainer.appendChild(wrapper);
+});
 }
 }
 
