@@ -22,16 +22,12 @@ body {
   height: auto;
 }
 
-/*#image-container img[src*="images/21.jpg"],
-#image-container img[src*="images/11.jpg"],
-#image-container img[src*="images/fair01.jpg"],
-#image-container img[src*="images/09.jpg"],
-#image-container img[src*="images/06.jpg"],
-#image-container img[src*="images/fair02.jpg"],
-#image-container img[src*="images/18.jpg"]{
-  filter: blur(30px);
-  transition: filter 0.5s ease;
-}*/
+.vertical-images img {
+  width: 500px;
+  height: auto;
+  display: block;
+}
+
 
 .modal-content a.active-menu {
   position: relative;
@@ -61,12 +57,11 @@ body {
 
 .image-credit {
   width: 500px;
-  margin: 20px auto 90px; /* 가운데 정렬 + 아래 여백 */
+  margin: 20px 90px; /* 가운데 정렬 + 아래 여백 */
   text-align: left;
   font-size: 13px;
   color: #777;
   margin-top: 20px;
-  margin-left: 0; /* ← 혹시 몰라서 명시해둠 */
   margin-bottom: 70px;
   line-height: 1.4;
 }
