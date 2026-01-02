@@ -322,7 +322,7 @@ opacity: 0.8;
 
 /* wrapper도 동일 기준 */
 #berlin-container .image-wrapper {
-  margin-top: 120px;   /* 🔑 충분한 분리감 */
+  margin-top: 300px;   /* 🔑 충분한 분리감 */
   width: 100%;
   max-width: 100%;
 }
