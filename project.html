@@ -415,43 +415,41 @@ function showImagesVertically() {
   const container = document.getElementById("image-container");
   const berlinContainer = document.getElementById("berlin-container");
 
+  // 초기화
   container.innerHTML = "";
   berlinContainer.innerHTML = "";
 
   container.className = "vertical-images";
   berlinContainer.className = "vertical-images";
 
-  // 🔹 Puppet / 기본 프로젝트 이미지
+  // 🔹 Puppet / 기본 프로젝트 이미지 (절대 안 건드림)
   images[currentProject].forEach(src => {
     container.appendChild(createImageWrapper(src));
   });
 
- if (currentProject === "puppet" && berlinExpanded) {
+  // 🔹 베를린 이미지 (JS로만 간격 제어)
+  if (currentProject === "puppet" && berlinExpanded) {
 
-  // ✅ Puppet 마지막 이미지에 id (스크롤 기준용)
-  const puppetImages = container.querySelectorAll(".image-wrapper");
-  if (puppetImages.length) {
-    puppetImages[puppetImages.length - 1].id = "puppet-end";
+    // ✅ 베를린 상단 여백 (첫 이미지 위)
+    const spacer = document.createElement("div");
+    spacer.style.height = "100px"; // ← 여기서 베를린 시작 여백 조절
+    spacer.style.width = "100%";
+    berlinContainer.appendChild(spacer);
+
+    images.puppetber.forEach((src, index) => {
+      const wrapper = createImageWrapper(src);
+
+      // ✅ 첫 베를린 이미지 기준점 (스크롤용)
+      if (index === 0) {
+        wrapper.id = "berlin-start";
+      } else {
+        // ✅ 베를린 이미지들 사이 간격 (첫 이미지 제외)
+        wrapper.style.marginTop = "120px"; // ← 여기 숫자만 조절
+      }
+
+      berlinContainer.appendChild(wrapper);
+    });
   }
-
-  // ✅ 베를린 상단 여백
-  const spacer = document.createElement("div");
-  spacer.style.height = "100px";
-  spacer.style.width = "100%";
-  berlinContainer.appendChild(spacer);
-
-  // ✅ 베를린 이미지들만 추가
-  images.puppetber.forEach((src, index) => {
-    const wrapper = createImageWrapper(src);
-
-    // 베를린 첫 이미지 기준점
-    if (index === 0) {
-      wrapper.id = "berlin-start";
-    }
-
-    berlinContainer.appendChild(wrapper);
-  });
-}
 }
 
 
