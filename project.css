@@ -393,8 +393,8 @@ top: 30px;
 z-index: 4000;
 opacity: 0.8;
 
- padding-left: 12px;   /* 🔑 이 줄 */
-  padding-right: 28px;  /* 🔑 화살표 공간 확보 (iOS 필수) */
+ padding-left: 10px;   /* 🔑 이 줄 */
+  padding-right: 10px;  /* 🔑 화살표 공간 확보 (iOS 필수) */
 }
 
 .plus-icon {
