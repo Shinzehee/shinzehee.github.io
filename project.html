@@ -283,33 +283,33 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("desc-line3").textContent = desc.line3;
 
 
+toggleBerlin.onclick = () => {
+    if (berlinExpanded) return;
 
-  toggleBerlin.onclick = () => {
-  if (berlinExpanded) return;
+    berlinExpanded = true;
+    toggleBerlin.style.display = "none";
 
-  berlinExpanded = true;
-  toggleBerlin.style.display = "none";
+    showImagesVertically();
+    updateProjectCredit();
 
-  showImagesVertically();
-  updateProjectCredit();
+    toggleBerlinClose.style.display = "block";
+    document.querySelector(".slider-wrapper")
+      .appendChild(toggleBerlinClose);
 
-  toggleBerlinClose.style.display = "block";
-  document.querySelector(".slider-wrapper").appendChild(toggleBerlinClose);
+    bindBerlinClose();
 
-  // 🔑 이 줄 추가
-  bindBerlinClose();
+    requestAnimationFrame(() => {
+      const start = document.getElementById("berlin-start");
+      if (!start) return;
 
-  requestAnimationFrame(() => {
-    const start = document.getElementById("berlin-start");
-    if (!start) return;
+      window.scrollTo({
+        top: start.getBoundingClientRect().top + window.pageYOffset - 60,
+        behavior: "smooth"
+      });
+    });
+  }; // toggleBerlin.onclick 끝
 
-   window.scrollTo({
-  top: start.getBoundingClientRect().top + window.pageYOffset - 60,
-  behavior: "smooth"
-  });
-}; // ✅ toggleBerlin.onclick 끝
-
-}); // ✅ DOMContentLoaded 끝
+}); // DOMContentLoaded 끝
 
 
 
