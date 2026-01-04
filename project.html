@@ -235,8 +235,27 @@ document.getElementById("project-select").addEventListener("change", function ()
   document.getElementById("desc-line5").textContent = desc.line5 || "";
   document.getElementById("desc-line6").textContent = desc.line6 || "";
 
-  const berlinToggle = document.getElementById("toggle-berlin");
-  berlinToggle.style.display = currentProject === "puppet" ? "block" : "none";
+  const toggleBerlin = document.getElementById("toggle-berlin");
+const toggleBerlinClose = document.getElementById("toggle-berlin-close");
+const berlinContainer = document.getElementById("berlin-container");
+const berlinCredit = document.getElementById("berlin-credit");
+
+// 🔥 베를린 상태 강제 리셋
+berlinExpanded = false;
+toggleBerlinClose.style.display = "none";
+berlinContainer.innerHTML = "";
+berlinCredit.style.display = "none";
+berlinCredit.innerHTML = "";
+
+// 🔥 Puppet이 아닐 땐 OPEN도 숨김
+toggleBerlin.style.display =
+  this.value === "puppet" ? "block" : "none";
+
+  if (currentProject !== "puppet" || !berlinExpanded) {
+  toggleBerlinClose.style.display = "none";
+}
+
+
 });
 
 
@@ -268,7 +287,9 @@ window.addEventListener("DOMContentLoaded", () => {
   updateProjectCredit();
 
   toggleBerlinClose.style.display = "block";
-  document.getElementById("berlin-credit").after(toggleBerlinClose);
+ if (!toggleBerlinClose.parentNode || toggleBerlinClose.parentNode.id !== "slider-wrapper") {
+  document.querySelector(".slider-wrapper").appendChild(toggleBerlinClose);
+}
 
   // ✅ 펼쳐진 첫 베를린 이미지로 자동 스크롤
   requestAnimationFrame(() => {
