@@ -332,7 +332,7 @@ toggleBerlin.onclick = () => {
 
       toggleBerlinClose.style.display = "none";
       toggleBerlin.style.display = "block";
-      
+
 const puppetEnd = document.getElementById("puppet-end");
 if (puppetEnd) {
   window.scrollTo({
@@ -427,22 +427,29 @@ function showImagesVertically() {
 
  if (currentProject === "puppet" && berlinExpanded) {
 
-  // ✅ 베를린 전용 상단 여백 스페이서
+  // ✅ Puppet 마지막 이미지에 id (스크롤 기준용)
+  const puppetImages = container.querySelectorAll(".image-wrapper");
+  if (puppetImages.length) {
+    puppetImages[puppetImages.length - 1].id = "puppet-end";
+  }
+
+  // ✅ 베를린 상단 여백
   const spacer = document.createElement("div");
-  spacer.style.height = "100px";   // ← 여기서 여백 조절
+  spacer.style.height = "100px";
   spacer.style.width = "100%";
   berlinContainer.appendChild(spacer);
 
-  images[currentProject].forEach((src, index) => {
-  const wrapper = createImageWrapper(src);
+  // ✅ 베를린 이미지들만 추가
+  images.puppetber.forEach((src, index) => {
+    const wrapper = createImageWrapper(src);
 
-  // ✅ Puppet 마지막 이미지에 id 부여
-  if (currentProject === "puppet" && index === images.puppet.length - 1) {
-    wrapper.id = "puppet-end";
-  }
+    // 베를린 첫 이미지 기준점
+    if (index === 0) {
+      wrapper.id = "berlin-start";
+    }
 
-  container.appendChild(wrapper);
-});
+    berlinContainer.appendChild(wrapper);
+  });
 }
 }
 
