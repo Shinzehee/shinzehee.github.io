@@ -300,14 +300,15 @@ toggleBerlin.onclick = () => {
 
  requestAnimationFrame(() => {
   const start = document.getElementById("berlin-start");
-  if (!start) return;
+  const wrapper = document.querySelector(".slider-wrapper");
+  if (!start || !wrapper) return;
 
-  const y =
-    start.getBoundingClientRect().top +
-    window.pageYOffset -
-    70; // ← 여기 숫자로 위치 미세조정
+  const isMobile = window.innerWidth <= 768;
 
-  window.scrollTo({
+  const offset = isMobile ? 60 : 120; // ← 여기만 조절
+  const y = start.offsetTop - offset;
+
+  wrapper.scrollTo({
     top: y,
     behavior: "smooth"
   });
