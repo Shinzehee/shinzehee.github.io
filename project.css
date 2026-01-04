@@ -66,9 +66,9 @@ body {
   line-height: 1.4;
 }
 
-#berlin-container img {
+/*#berlin-container img {
   filter: blur(35px);
-}
+}*/
 
 #image-container.vertical-images {
   display: flex;
