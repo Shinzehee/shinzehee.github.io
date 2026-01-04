@@ -303,12 +303,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const start = document.getElementById("berlin-start");
     if (!start) return;
 
-    window.scrollTo({
-      top: start.getBoundingClientRect().top + window.pageYOffset - 60,
-      behavior: "smooth"
-   }; // toggleBerlin.onclick 끝
-}); // ✅ DOMContentLoaded 끝
+   window.scrollTo({
+  top: start.getBoundingClientRect().top + window.pageYOffset - 60,
+  behavior: "smooth"
+  });
+}; // ✅ toggleBerlin.onclick 끝
 
+}); // ✅ DOMContentLoaded 끝
 
 
 
