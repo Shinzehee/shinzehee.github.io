@@ -332,16 +332,15 @@ toggleBerlin.onclick = () => {
 
       toggleBerlinClose.style.display = "none";
       toggleBerlin.style.display = "block";
-
-      // 🔑 Puppet 첫 이미지로 자동 스크롤
-      const firstImage = document.querySelector("#image-container .image-wrapper");
-      if (firstImage) {
-        window.scrollTo({
-          top: firstImage.getBoundingClientRect().top + window.pageYOffset - 60,
-          behavior: "smooth"
-        });
-      }
-
+      
+const puppetEnd = document.getElementById("puppet-end");
+if (puppetEnd) {
+  window.scrollTo({
+    top: puppetEnd.getBoundingClientRect().top + window.pageYOffset - 60,
+    behavior: "smooth"
+  });
+}
+      
       updateProjectCredit();
     }, 400);
   };
