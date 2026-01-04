@@ -313,7 +313,10 @@ window.scrollTo({
   top: start.getBoundingClientRect().top + window.pageYOffset - offset,
   behavior: "smooth"
   });
-  });
+    });
+  };
+}); // ✅ 여기서 딱 한 번만 닫힘
+
 
 
 
