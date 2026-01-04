@@ -319,31 +319,32 @@ toggleBerlin.onclick = () => {
   const toggleBerlin = document.getElementById("toggle-berlin");
   const berlinContainer = document.getElementById("berlin-container");
 
-  toggleBerlinClose.onclick = () => {
+ toggleBerlinClose.onclick = () => {
 
-    // 베를린 이미지 접기 애니메이션
-    [...berlinContainer.children].forEach(el => {
-      el.classList.add("berlin-collapse");
-    });
-
-    setTimeout(() => {
-      berlinExpanded = false;
-      berlinContainer.innerHTML = "";
-
-      toggleBerlinClose.style.display = "none";
-      toggleBerlin.style.display = "block";
-
-const puppetEnd = document.getElementById("puppet-end");
-if (puppetEnd) {
-  window.scrollTo({
-    top: puppetEnd.getBoundingClientRect().top + window.pageYOffset - 60,
-    behavior: "smooth"
+  [...berlinContainer.children].forEach(el => {
+    el.classList.add("berlin-collapse");
   });
-}
-      
-      updateProjectCredit();
-    }, 400);
-  };
+
+  setTimeout(() => {
+    berlinExpanded = false;
+    berlinContainer.innerHTML = "";
+
+    toggleBerlinClose.style.display = "none";
+    toggleBerlin.style.display = "block";
+
+    // ✅ 복귀 스크롤 기준: Puppet (in Berlin) 텍스트
+    const toggleBerlinText = document.getElementById("toggle-berlin");
+    if (toggleBerlinText) {
+      const rect = toggleBerlinText.getBoundingClientRect();
+      window.scrollTo({
+        top: rect.top + window.pageYOffset - 40,
+        behavior: "smooth"
+      });
+    }
+
+    updateProjectCredit();
+  }, 400);
+};
 }
 
 
