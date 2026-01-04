@@ -282,11 +282,10 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("desc-line2").textContent = desc.line2;
   document.getElementById("desc-line3").textContent = desc.line3;
 
-  /* ✅ OPEN */
+
+
   toggleBerlin.onclick = () => {
   if (berlinExpanded) return;
-
-  
 
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
@@ -295,61 +294,57 @@ window.addEventListener("DOMContentLoaded", () => {
   updateProjectCredit();
 
   toggleBerlinClose.style.display = "block";
- if (!toggleBerlinClose.parentNode || toggleBerlinClose.parentNode.id !== "slider-wrapper") {
   document.querySelector(".slider-wrapper").appendChild(toggleBerlinClose);
-}
 
-  // ✅ 펼쳐진 첫 베를린 이미지로 자동 스크롤
+  // 🔑 이 줄 추가
+  bindBerlinClose();
+
   requestAnimationFrame(() => {
     const start = document.getElementById("berlin-start");
     if (!start) return;
 
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-// PC / 모바일 스크롤 보정값 분리
-const offset = isMobile ? 150 : 60;
-
-window.scrollTo({
-  top: start.getBoundingClientRect().top + window.pageYOffset - offset,
-  behavior: "smooth"
-  });
+    window.scrollTo({
+      top: start.getBoundingClientRect().top + window.pageYOffset - 60,
+      behavior: "smooth"
     });
-  };
-}); // ✅ 여기서 딱 한 번만 닫힘
-
-
-
-
-  toggleBerlinClose.onclick = () => {
-  const berlinContainer = document.getElementById("berlin-container");
-
-  // 1️⃣ 베를린 이미지들에 collapse 애니메이션 적용
-  [...berlinContainer.children].forEach(el => {
-    el.classList.add("berlin-collapse");
   });
-
-  // 2️⃣ 애니메이션 끝난 뒤 실제로 제거
-  setTimeout(() => {
-    berlinExpanded = false;
-
-    // 🔑 핵심: 베를린 DOM 완전 제거
-    berlinContainer.innerHTML = "";
-
-    // UI 상태 복구
-    toggleBerlinClose.style.display = "none";
-    toggleBerlin.style.display = "block";
-
-    // 3️⃣ 항상 OPEN 텍스트 위치로 스크롤
-    toggleBerlin.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-    // 크레딧 정리
-    updateProjectCredit();
-  }, 400); // ← berlin-collapse transition 시간과 동일
 };
 
+
+
+
+  function bindBerlinClose() {
+  const toggleBerlinClose = document.getElementById("toggle-berlin-close");
+  const toggleBerlin = document.getElementById("toggle-berlin");
+  const berlinContainer = document.getElementById("berlin-container");
+
+  toggleBerlinClose.onclick = () => {
+
+    // 베를린 이미지 접기 애니메이션
+    [...berlinContainer.children].forEach(el => {
+      el.classList.add("berlin-collapse");
+    });
+
+    setTimeout(() => {
+      berlinExpanded = false;
+      berlinContainer.innerHTML = "";
+
+      toggleBerlinClose.style.display = "none";
+      toggleBerlin.style.display = "block";
+
+      // 🔑 Puppet 첫 이미지로 자동 스크롤
+      const firstImage = document.querySelector("#image-container .image-wrapper");
+      if (firstImage) {
+        window.scrollTo({
+          top: firstImage.getBoundingClientRect().top + window.pageYOffset - 60,
+          behavior: "smooth"
+        });
+      }
+
+      updateProjectCredit();
+    }, 400);
+  };
+}
 
 
 
