@@ -434,19 +434,15 @@ function showImagesVertically() {
   spacer.style.width = "100%";
   berlinContainer.appendChild(spacer);
 
-  images.puppetber.forEach((src, index) => {
+  images[currentProject].forEach((src, index) => {
   const wrapper = createImageWrapper(src);
 
-  // 🔴 베를린 이미지들 사이 간격만 조절
-  if (index !== 0) {
-    wrapper.style.marginTop = "120px"; // ← 여기 숫자만 조절
+  // ✅ Puppet 마지막 이미지에 id 부여
+  if (currentProject === "puppet" && index === images.puppet.length - 1) {
+    wrapper.id = "puppet-end";
   }
 
-  if (index === 0) {
-    wrapper.id = "berlin-start";
-  }
-
-  berlinContainer.appendChild(wrapper);
+  container.appendChild(wrapper);
 });
 }
 }
