@@ -283,6 +283,12 @@ window.addEventListener("DOMContentLoaded", () => {
   toggleBerlin.onclick = () => {
   if (berlinExpanded) return;
 
+   // ✅ 항상 텍스트 위치부터 시작
+  toggleBerlin.scrollIntoView({
+    behavior: "auto",
+    block: "start"
+  });
+
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
 
