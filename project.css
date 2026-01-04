@@ -71,7 +71,7 @@ body {
 }*/
 
 #image-container.vertical-images .image-wrapper:not(:first-child) {
-  margin-top: -20px;
+  margin-top: -50px;
 }
 
 #image-container.vertical-images {
@@ -423,7 +423,7 @@ opacity: 0.8;
 
 
 #image-container.vertical-images .image-wrapper:not(:first-child) {
-  margin-top: -20px;
+  margin-top: -50px;
 }
 
  #image-container.vertical-images {
