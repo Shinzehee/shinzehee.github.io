@@ -450,7 +450,9 @@ opacity: 0.8;
 
   }
 
-
+  .project-extra {
+    text-underline-offset: 6px;  /* ← 여기 숫자만 조절 */
+  }
 
   .image-wrapper {
     width: 100%;
