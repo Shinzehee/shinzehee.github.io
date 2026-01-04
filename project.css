@@ -70,6 +70,10 @@ body {
   filter: blur(35px);
 }*/
 
+#image-container.vertical-images .image-wrapper:not(:first-child) {
+  margin-top: -20px;
+}
+
 #image-container.vertical-images {
   display: flex;
   flex-direction: column;
@@ -417,6 +421,10 @@ opacity: 0.8;
   transform: translate(-50%, -50%);
 }
 
+
+#image-container.vertical-images .image-wrapper:not(:first-child) {
+  margin-top: -20px;
+}
 
  #image-container.vertical-images {
     padding-top: 100px;  /* 모바일용 여백 */
