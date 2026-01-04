@@ -298,14 +298,23 @@ toggleBerlin.onclick = () => {
 
     bindBerlinClose();
 
-   // ✅ 베를린 첫 이미지로 즉시 고정 (PC 튐 방지)
-const start = document.getElementById("berlin-start");
-if (start) {
-  const y = start.getBoundingClientRect().top + window.pageYOffset - 60;
+ // ✅ 베를린 첫 이미지로 "확실하게" 스크롤
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    const start = document.getElementById("berlin-start");
+    if (!start) return;
 
-  // PC에서 중간 프레임 스크롤 방지
-  window.scrollTo(0, y);
-}
+    const y =
+      start.getBoundingClientRect().top +
+      window.pageYOffset -
+      30; // ← 화면에서 잡히는 위치 조절
+
+    window.scrollTo({
+      top: y,
+      behavior: "auto" // ❗ smooth 쓰면 또 튐
+    });
+  });
+});
   }; // toggleBerlin.onclick 끝
 
 }); // DOMContentLoaded 끝
