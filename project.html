@@ -284,34 +284,36 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 toggleBerlin.onclick = () => {
-    if (berlinExpanded) return;
+  if (berlinExpanded) return;
 
-    berlinExpanded = true;
-    toggleBerlin.style.display = "none";
+  const wrapper = document.querySelector(".slider-wrapper");
+  wrapper.scrollTop = 0; // 🔥 이 줄이 핵심
 
-    showImagesVertically();
-    updateProjectCredit();
+  berlinExpanded = true;
+  toggleBerlin.style.display = "none";
 
-    toggleBerlinClose.style.display = "block";
-    document.querySelector(".slider-wrapper")
-      .appendChild(toggleBerlinClose);
+  showImagesVertically();
+  updateProjectCredit();
 
-    bindBerlinClose();
+  toggleBerlinClose.style.display = "block";
+  wrapper.appendChild(toggleBerlinClose);
 
-requestAnimationFrame(() => {
+  bindBerlinClose();
+
   requestAnimationFrame(() => {
-    const start = document.getElementById("berlin-start");
-    if (!start) return;
+    requestAnimationFrame(() => {
+      const start = document.getElementById("berlin-start");
+      if (!start) return;
 
-    const isMobile = window.innerWidth <= 768;
-    const offset = isMobile ? 50 : 0;
+      const isMobile = window.innerWidth <= 768;
+      const offset = isMobile ? 50 : 30;
 
-    window.scrollTo({
-      top: start.offsetTop - offset,
-      behavior: "smooth"
+      wrapper.scrollTo({
+        top: start.offsetTop - offset,
+        behavior: "smooth"
+      });
     });
   });
-});
 }; // ✅ toggleBerlin.onclick 닫힘
 });
 
