@@ -284,11 +284,6 @@ window.addEventListener("DOMContentLoaded", () => {
 toggleBerlin.onclick = () => {
   if (berlinExpanded) return;
 
-  const wrapper = document.querySelector(".slider-wrapper");
-
-  // 🔥 핵심 1: 기준 스크롤을 무조건 초기화
-  wrapper.scrollTop = 0;
-
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
 
@@ -296,32 +291,24 @@ toggleBerlin.onclick = () => {
   updateProjectCredit();
 
   toggleBerlinClose.style.display = "block";
-  wrapper.appendChild(toggleBerlinClose);
-
   bindBerlinClose();
 
-  requestAnimationFrame(() => {
-  requestAnimationFrame(() => {
+  // ✅ DOM + 이미지 레이아웃 완전히 잡힌 뒤 페이지 스크롤
+  setTimeout(() => {
     const start = document.getElementById("berlin-start");
     if (!start) return;
 
-    const isMobile = window.innerWidth <= 768;
-    const offset = isMobile ? 50 : 30;
+    const y =
+      start.getBoundingClientRect().top + window.pageYOffset - 40;
 
-    const wrapperRect = wrapper.getBoundingClientRect();
-    const startRect = start.getBoundingClientRect();
-
-    const targetTop =
-      wrapper.scrollTop + (startRect.top - wrapperRect.top) - offset;
-
-    wrapper.scrollTo({
-      top: targetTop,
+    window.scrollTo({
+      top: y,
       behavior: "smooth"
     });
-  });
-});
+  }, 120);
 };
-});
+  });
+
 
 
 
