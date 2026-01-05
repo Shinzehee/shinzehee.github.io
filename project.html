@@ -298,21 +298,19 @@ toggleBerlin.onclick = () => {
 
     bindBerlinClose();
 
- requestAnimationFrame(() => {
-  const start = document.getElementById("berlin-start");
-  if (!start) return;
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => { // ✅ 한 프레임 더 기다림 (PC 핵심)
+    const start = document.getElementById("berlin-start");
+    const wrapper = document.querySelector(".slider-wrapper");
+    if (!start || !wrapper) return;
 
-  const isMobile = window.innerWidth <= 768;
-  const offset = isMobile ? 50 : 100;
+    const isMobile = window.innerWidth <= 768;
+    const offset = isMobile ? 50 : 100;
 
-  const y =
-    start.getBoundingClientRect().top +
-    window.pageYOffset -
-    offset;
-
-  window.scrollTo({
-    top: y,
-    behavior: "smooth"
+    wrapper.scrollTo({
+      top: start.offsetTop - offset,
+      behavior: "smooth"
+    });
   });
 });
 };
