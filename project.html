@@ -284,10 +284,19 @@ window.addEventListener("DOMContentLoaded", () => {
 toggleBerlin.onclick = () => {
   if (berlinExpanded) return;
 
+  // ✅ 항상 첫 이미지로만 스크롤 (핵심)
+  const firstImageTop =
+    document.getElementById("image-container").offsetTop;
+
+  window.scrollTo({
+    top: firstImageTop,
+    behavior: "smooth"
+  });
+
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
 
-  renderBerlinImages();        // ✅ 베를린만 생성
+  showImagesVertically();
   updateProjectCredit();
 
   toggleBerlinClose.style.display = "block";
@@ -296,23 +305,9 @@ toggleBerlin.onclick = () => {
   berlinCredit.after(toggleBerlinClose);
 
   bindBerlinClose();
-
-  requestAnimationFrame(() => {
-    const start = document.getElementById("berlin-start");
-    if (!start) return;
-
-    const y =
-      start.getBoundingClientRect().top +
-      window.pageYOffset -
-      40;
-
-    window.scrollTo({
-      top: y,
-      behavior: "smooth"
-    });
-  });
 };
   });
+
 
 
 
