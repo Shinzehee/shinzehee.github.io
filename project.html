@@ -306,9 +306,7 @@ requestAnimationFrame(() => {
     const isMobile = window.innerWidth <= 768;
     const offset = isMobile ? 50 : 30;
 
-    const wrapper = document.querySelector(".slider-wrapper");
-
-      wrapper.scrollTo({
+    window.scrollTo({
       top: start.offsetTop - offset,
       behavior: "smooth"
     });
