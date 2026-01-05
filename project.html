@@ -284,15 +284,6 @@ window.addEventListener("DOMContentLoaded", () => {
 toggleBerlin.onclick = () => {
   if (berlinExpanded) return;
 
-  // ✅ 항상 첫 이미지로만 스크롤 (핵심)
-  const firstImageTop =
-    document.getElementById("image-container").offsetTop;
-
-  window.scrollTo({
-    top: firstImageTop,
-    behavior: "smooth"
-  });
-
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
 
@@ -305,6 +296,22 @@ toggleBerlin.onclick = () => {
   berlinCredit.after(toggleBerlinClose);
 
   bindBerlinClose();
+
+  // ✅ DOM 렌더 완료 후 베를린 첫 이미지로 정확히 이동
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const berlinStart = document.getElementById("berlin-start");
+      if (!berlinStart) return;
+
+      const y =
+        berlinStart.offsetTop - 40; // 필요하면 -값 조절
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth"
+      });
+    });
+  });
 };
   });
 
