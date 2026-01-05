@@ -291,9 +291,13 @@ toggleBerlin.onclick = () => {
   updateProjectCredit();
 
   toggleBerlinClose.style.display = "block";
+
+  // ✅ 위치 고정: 베를린 크레딧 바로 아래
+  const berlinCredit = document.getElementById("berlin-credit");
+  berlinCredit.after(toggleBerlinClose);
+
   bindBerlinClose();
 
-  // ✅ DOM + 이미지 레이아웃 완전히 잡힌 뒤 페이지 스크롤
   setTimeout(() => {
     const start = document.getElementById("berlin-start");
     if (!start) return;
