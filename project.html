@@ -321,32 +321,35 @@ toggleBerlin.onclick = () => {
   const toggleBerlin = document.getElementById("toggle-berlin");
   const berlinContainer = document.getElementById("berlin-container");
 
- toggleBerlinClose.onclick = () => {
-  const wrapper = document.querySelector(".slider-wrapper");
+  toggleBerlinClose.onclick = () => {
+    [...berlinContainer.children].forEach(el => {
+      el.classList.add("berlin-collapse");
+    });
 
-  [...berlinContainer.children].forEach(el => {
-    el.classList.add("berlin-collapse");
-  });
+    setTimeout(() => {
+      berlinExpanded = false;
+      berlinContainer.innerHTML = "";
 
-  setTimeout(() => {
-    berlinExpanded = false;
-    berlinContainer.innerHTML = "";
+      toggleBerlinClose.style.display = "none";
+      toggleBerlin.style.display = "block";
 
-    toggleBerlinClose.style.display = "none";
-    toggleBerlin.style.display = "block";
+      // ✅ 항상 페이지 기준 스크롤
+      const toggleBerlinText = document.getElementById("toggle-berlin");
+      if (toggleBerlinText) {
+        const y =
+          toggleBerlinText.getBoundingClientRect().top +
+          window.pageYOffset -
+          40;
 
-    // ✅ OPEN 텍스트 위치로 정확히 복귀
-    const toggleBerlinText = document.getElementById("toggle-berlin");
-    if (toggleBerlinText) {
-      wrapper.scrollTo({
-        top: toggleBerlinText.offsetTop - 40,
-        behavior: "smooth"
-      });
-    }
+        window.scrollTo({
+          top: y,
+          behavior: "smooth"
+        });
+      }
 
-    updateProjectCredit();
-  }, 400);
-};
+      updateProjectCredit();
+    }, 400);
+  };
 }
 
 
