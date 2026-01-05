@@ -300,21 +300,26 @@ toggleBerlin.onclick = () => {
 
   bindBerlinClose();
 
-  // 🔥 핵심 2: DOM 완전히 그려진 다음 위치 계산
   requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const start = document.getElementById("berlin-start");
-      if (!start) return;
+  requestAnimationFrame(() => {
+    const start = document.getElementById("berlin-start");
+    if (!start) return;
 
-      const isMobile = window.innerWidth <= 768;
-      const offset = isMobile ? 50 : 30;
+    const isMobile = window.innerWidth <= 768;
+    const offset = isMobile ? 50 : 30;
 
-      wrapper.scrollTo({
-        top: start.offsetTop - offset,
-        behavior: "smooth"
-      });
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const startRect = start.getBoundingClientRect();
+
+    const targetTop =
+      wrapper.scrollTop + (startRect.top - wrapperRect.top) - offset;
+
+    wrapper.scrollTo({
+      top: targetTop,
+      behavior: "smooth"
     });
   });
+});
 };
 });
 
