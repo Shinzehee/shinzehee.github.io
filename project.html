@@ -288,6 +288,9 @@ toggleBerlin.onclick = () => {
 
   const wrapper = document.querySelector(".slider-wrapper");
 
+  // 🔥 핵심 1: 기준 스크롤을 무조건 초기화
+  wrapper.scrollTop = 0;
+
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
 
@@ -299,20 +302,22 @@ toggleBerlin.onclick = () => {
 
   bindBerlinClose();
 
+  // 🔥 핵심 2: DOM 완전히 그려진 다음 위치 계산
   requestAnimationFrame(() => {
-    const start = document.getElementById("berlin-start");
-    if (!start) return;
+    requestAnimationFrame(() => {
+      const start = document.getElementById("berlin-start");
+      if (!start) return;
 
-    const isMobile = window.innerWidth <= 768;
-    const offset = isMobile ? 50 : 30;
+      const isMobile = window.innerWidth <= 768;
+      const offset = isMobile ? 50 : 30;
 
-    wrapper.scrollTo({
-      top: start.offsetTop - offset,
-      behavior: "smooth"
+      wrapper.scrollTo({
+        top: start.offsetTop - offset,
+        behavior: "smooth"
+      });
     });
   });
 };
-});
 
 
 
