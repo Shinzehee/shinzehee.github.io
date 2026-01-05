@@ -300,20 +300,27 @@ toggleBerlin.onclick = () => {
 
   bindBerlinClose();
 
+ requestAnimationFrame(() => {
   requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const start = document.getElementById("berlin-start");
-      if (!start) return;
+    const start = document.getElementById("berlin-start");
+    const wrapper = document.querySelector(".slider-wrapper");
+    if (!start || !wrapper) return;
 
-      const isMobile = window.innerWidth <= 768;
-      const offset = isMobile ? 50 : 30;
+    const isMobile = window.innerWidth <= 768;
+    const offset = isMobile ? 50 : 30;
 
-      wrapper.scrollTo({
-        top: start.offsetTop - offset,
-        behavior: "smooth"
-      });
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const startRect = start.getBoundingClientRect();
+
+    const targetY =
+      wrapper.scrollTop + (startRect.top - wrapperRect.top) - offset;
+
+    wrapper.scrollTo({
+      top: targetY,
+      behavior: "smooth"
     });
   });
+});
 }; // ✅ toggleBerlin.onclick 닫힘
 });
 
