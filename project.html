@@ -287,7 +287,6 @@ toggleBerlin.onclick = () => {
   if (berlinExpanded) return;
 
   const wrapper = document.querySelector(".slider-wrapper");
-  wrapper.scrollTop = 0; // 🔥 이 줄이 핵심
 
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
@@ -300,19 +299,19 @@ toggleBerlin.onclick = () => {
 
   bindBerlinClose();
 
- requestAnimationFrame(() => {
-  const start = document.getElementById("berlin-start");
-  if (!start) return;
+  requestAnimationFrame(() => {
+    const start = document.getElementById("berlin-start");
+    if (!start) return;
 
-  const isMobile = window.innerWidth <= 768;
-  const offset = isMobile ? 50 : 30;
+    const isMobile = window.innerWidth <= 768;
+    const offset = isMobile ? 50 : 30;
 
-  window.scrollTo({
-    top: start.offsetTop - offset,
-    behavior: "smooth"
+    wrapper.scrollTo({
+      top: start.offsetTop - offset,
+      behavior: "smooth"
+    });
   });
-});
-}; // ✅ toggleBerlin.onclick 닫힘
+};
 });
 
 
@@ -323,6 +322,7 @@ toggleBerlin.onclick = () => {
   const berlinContainer = document.getElementById("berlin-container");
 
  toggleBerlinClose.onclick = () => {
+  const wrapper = document.querySelector(".slider-wrapper");
 
   [...berlinContainer.children].forEach(el => {
     el.classList.add("berlin-collapse");
@@ -335,12 +335,11 @@ toggleBerlin.onclick = () => {
     toggleBerlinClose.style.display = "none";
     toggleBerlin.style.display = "block";
 
-    // ✅ 복귀 스크롤 기준: Puppet (in Berlin) 텍스트
+    // ✅ OPEN 텍스트 위치로 정확히 복귀
     const toggleBerlinText = document.getElementById("toggle-berlin");
     if (toggleBerlinText) {
-      const rect = toggleBerlinText.getBoundingClientRect();
-      window.scrollTo({
-        top: rect.top + window.pageYOffset - 40,
+      wrapper.scrollTo({
+        top: toggleBerlinText.offsetTop - 40,
         behavior: "smooth"
       });
     }
