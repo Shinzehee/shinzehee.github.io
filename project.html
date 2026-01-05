@@ -287,29 +287,30 @@ toggleBerlin.onclick = () => {
   berlinExpanded = true;
   toggleBerlin.style.display = "none";
 
-  showImagesVertically();
+  renderBerlinImages();        // ✅ 베를린만 생성
   updateProjectCredit();
 
   toggleBerlinClose.style.display = "block";
 
-  // ✅ 위치 고정: 베를린 크레딧 바로 아래
   const berlinCredit = document.getElementById("berlin-credit");
   berlinCredit.after(toggleBerlinClose);
 
   bindBerlinClose();
 
-  setTimeout(() => {
+  requestAnimationFrame(() => {
     const start = document.getElementById("berlin-start");
     if (!start) return;
 
     const y =
-      start.getBoundingClientRect().top + window.pageYOffset - 40;
+      start.getBoundingClientRect().top +
+      window.pageYOffset -
+      40;
 
     window.scrollTo({
       top: y,
       behavior: "smooth"
     });
-  }, 120);
+  });
 };
   });
 
@@ -484,7 +485,27 @@ function updateProjectCredit() {
   }
 }
 
+function renderBerlinImages() {
+  const berlinContainer = document.getElementById("berlin-container");
+  berlinContainer.innerHTML = "";
+  berlinContainer.className = "vertical-images";
 
+  const spacer = document.createElement("div");
+  spacer.style.height = "100px";
+  berlinContainer.appendChild(spacer);
+
+  images.puppetber.forEach((src, index) => {
+    const wrapper = createImageWrapper(src);
+
+    if (index === 0) {
+      wrapper.id = "berlin-start";
+    } else {
+      wrapper.style.marginTop = "110px";
+    }
+
+    berlinContainer.appendChild(wrapper);
+  });
+}
 
 </script>
 </body>
