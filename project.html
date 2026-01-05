@@ -299,21 +299,18 @@ toggleBerlin.onclick = () => {
     bindBerlinClose();
 
 requestAnimationFrame(() => {
-  requestAnimationFrame(() => { // ✅ 한 프레임 더 기다림 (PC 핵심)
+  requestAnimationFrame(() => {
     const start = document.getElementById("berlin-start");
-    const wrapper = document.querySelector(".slider-wrapper");
-    if (!start || !wrapper) return;
+    if (!start) return;
 
     const isMobile = window.innerWidth <= 768;
     const offset = isMobile ? 50 : 30;
 
-    wrapper.scrollTo({
+    window.scrollTo({
       top: start.offsetTop - offset,
       behavior: "smooth"
     });
   });
-});
-};
 });
 
 
