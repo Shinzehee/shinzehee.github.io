@@ -6,54 +6,120 @@
 	<meta name="description" content="설명">
 	<meta name="keywords" content="키워드1, 키워드2">
 	<meta property="og:image" content="">
-	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<meta name="viewport" content="width=device-width,
+           initial-scale=1.0,
+           minimum-scale=1.0,
+           maximum-scale=5.0,
+           user-scalable=yes">
 	<link rel="stylesheet" href="style.css">
 	<link rel="icon" type="image/png" href="">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
-
+  <script src="script.js" defer></script>
 
 </head>
 
+
+
+
+
+
+
+
 <body>
 
-<!-- <div class="repair">
-<p>🛠️</p>
-</div> -->
+<details class="jeaheeshin">
+  <summary>Jaehee Shin</summary>
 
- <div id="pageWrapper">
-    <div class="about-text">
-      <p>Jaehee  
-        <select id="instaSelect">
-          <option value=""></option>
-          <option value="https://jaeheeshin.com/project.html">Shin</option>
-        </select>
-      </p>
-    </div>
+<div class="jaeheeshincontent">
+<p>Bag Design / Making</p><br>
+
+<br>
+
+<div class="contact">
+  <a href="mailto:ssin159@gmail.com">Mail</a><br>
+<a href="https://www.instagram.com/shinzehee/" target="_blank">Instagram</a></div><br>
+<br>
+<p class="website">Website designed and developed by Jaehee Shin</p>
+</div>
+
+</details>
+
+
+
+
+
+<details class="work">
+  <summary>Work</summary>
+
+  <div class="image">
+  <div class="work-item">
+    <img src="image/monoha26winter.png">
+    <p>MONOHA 26 Winter</p>
+    <p class="design">Bag Design</p>
+  
+  </div>
+
+  <div class="work-item">
+    <img src="image/monoha26autumn.jpg">
+    <p>MONOHA 26 Autumn</p>
+    <p class="design">Bag / Acc Design</p>
+  </div>
+
+    <div class="work-item">
+    <img src="image/yunmonoha.jpg">
+    <p>YUN x MONOHA</p>
+    <p class="design">Acc Design</p>
+
+  </div>
+
+  <div class="work-item">
+    <img src="image/monoha26summer.png">
+    <p>MONOHA 26 Summer</p>
+    <p class="design">Bag Design</p>
+  </div>
+
+  <div class="work-item">
+    <img src="image/444.png">
+    <p>Puppet</p>
+    <p class="design">Bag Design / Making</p>
+  </div>
+
+   <div class="work-item">
+    <img src="image/555.png">
+    <p>Can</p>
+    <p class="design">Bag Design / Making</p>
+
+  </div>
+
+   <div class="work-item">
+    <img src="image/666.png">
+    <p>Braided Hair</p>
+    <p class="design">Acc Design / Making</p>
   </div>
 
 
-<script>
+</div>
 
 
-   document.getElementById('instaSelect').addEventListener('change', function () {
-    const url = this.value;
-    const wrapper = document.getElementById('pageWrapper');
-     if (url && wrapper) {
-      // 1초 대기 후 페이드아웃 시작
-      setTimeout(() => {
-        wrapper.classList.add('fade-out');
-
-        // 페이드아웃 1초 후 링크 이동
-        setTimeout(() => {
-          window.location.href = url;
-        }, 1500); // 페이드 시간
-
-      }, 100); // 첫 1초 지연
-    }
-  });
-</script>
+</details>
 
 
 
+
+
+<details class="archive">
+  <summary>Archive</summary>
+ <div id="arena-01"></div>
+  
+</details>
+
+
+
+
+
+<a href="#" class="back" id="back-button">< Back</a>
+
+
+ 
 </body>
 </html>
