@@ -34,7 +34,7 @@
   let count = 1;
 
   setInterval(() => {
-    count = count >= 3 ? 1 : count + 1;
+    count = count >= 3 ? 0 : count + 1;
     dots.textContent = ".".repeat(count);
   }, 500);
 </script>
